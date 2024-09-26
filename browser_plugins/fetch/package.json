@@ -34,7 +34,7 @@
     "build": "rimraf dist esm && rollup -c"
   },
   "dependencies": {
-    "@heimdallr-sdk/types": "workspace:^",
-    "@heimdallr-sdk/utils": "workspace:^"
+    "@heimdallr-sdk/types": "^0.0.16",
+    "@heimdallr-sdk/utils": "^0.0.20"
   }
 }

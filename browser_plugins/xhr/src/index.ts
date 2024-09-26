@@ -23,7 +23,7 @@ function XHRPlugin(options: RequestPluginOptionType = {}): BasePluginType {
   return {
     name: 'XHRPlugin',
     monitor(notify: (data: HttpCollectDataType) => void) {
-      const { initUrl, uploadUrl } = this.getContext();
+      const { initUrl, uploadUrl } = this.context;
       const client = this;
       const ignore = [...ignoreUrls, uploadUrl, initUrl].map((url) => getUrlPath(url));
       replaceOld(originalXhrProto, 'open', (originalOpen: voidFun): voidFun => {

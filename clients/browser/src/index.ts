@@ -7,7 +7,6 @@ import { nextTick } from './libs/nextTick';
 import jsErrorPlugin from './plugins/jsError';
 import promiseErrorPlugin from './plugins/promiseError';
 import lifeCyclePlugin from './plugins/lifeCycle';
-
 class BrowserClient extends Core<BrowserOptionsType> {
   private readonly breadcrumb: Breadcrumb<BrowserOptionsType>;
   private diff: number;

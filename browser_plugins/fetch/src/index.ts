@@ -18,10 +18,9 @@ function fetchPlugin(options: RequestPluginOptionType = {}): BasePluginType {
   return {
     name: 'fetchPlugin',
     monitor(notify: (data: HttpCollectDataType) => void) {
-      const { initUrl, uploadUrl } = this.getContext();
-
+      const { initUrl, uploadUrl } = this.context;
       const client = this;
-      const ignore = [...ignoreUrls, uploadUrl, initUrl].map((item) => getUrlPath(item));
+      const ignore = [...ignoreUrls, uploadUrl, initUrl].map((url) => getUrlPath(url));
       replaceOld(window, 'fetch', (originalFetch: voidFun) => {
         return function (url: string, config: Partial<Request> = {}): void {
           const sTime = client.getTime();
