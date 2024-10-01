@@ -23,7 +23,7 @@ Make sure `MySQL` and `RabbitMQ` are installed
 Installation Dependency
 
 ```bash
-pnpm i
+pnpm i --registry=https://registry.npmmirror.com
 ```
 
 Ensure that the local MySQL database service is started
@@ -48,7 +48,7 @@ pnpm run dev
 Installation Dependency
 
 ```bash
-pnpm i
+pnpm i --registry=https://registry.npmmirror.com
 ```
 
 Build a single package

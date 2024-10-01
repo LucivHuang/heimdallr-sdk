@@ -15,7 +15,7 @@
     "commitlint": "commitlint --config commitlint.config.js -e -V",
     "changeset": "changeset",
     "update-changelog": "changeset version",
-    "release": "changeset publish --registry=https://registry.npmjs.com/ --access=public"
+    "release": "changeset publish --access=public"
   },
   "repository": {
     "type": "git",
