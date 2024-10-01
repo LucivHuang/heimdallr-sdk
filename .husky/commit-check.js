@@ -38,5 +38,3 @@ for (const space of spaces) {
     process.exit(1);
   }
 }
-
-console.log(files);
