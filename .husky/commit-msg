@@ -1,4 +1,13 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run commitlint
+commit_msg_file=$1
+commit_msg=$(cat $commit_msg_file)
+
+# 非合并代码的commit才需要检查
+if ! echo "$commit_msg" | grep -qE "^Merge branch "; then
+    node .husky/commit-check.js $1
+fi
+
+
+npx --no -- commitlint --edit "$1"
