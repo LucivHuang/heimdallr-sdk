@@ -1,0 +1,38 @@
+{
+  "name": "@heimdallr-sdk/core",
+  "version": "0.0.26",
+  "description": "@heimdallr-sdk/core",
+  "license": "MIT",
+  "author": "LuciferHuang",
+  "main": "dist/core.umd.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "files": [
+    "dist",
+    "esm"
+  ],
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/core/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+  },
+  "keywords": [
+    "heimdallr",
+    "sdk",
+    "monitor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "rimraf esm && rollup -c rollup.config.dev.js -w",
+    "build": "rimraf dist esm && rollup -c"
+  },
+  "dependencies": {
+    "@heimdallr-sdk/types": "workspace:^",
+    "@heimdallr-sdk/utils": "workspace:^"
+  }
+}

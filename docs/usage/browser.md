@@ -43,7 +43,7 @@
 |名称|类型|描述|可选值|
 |-|-|-|-|
 |name|string|业务字段名称（支持点运算符读取，cookie除外）|-|
-|postion|string|存储位置|local/session/cookie/global|
+|position|string|存储位置|local/session/cookie/global|
 
 ## Usage
 

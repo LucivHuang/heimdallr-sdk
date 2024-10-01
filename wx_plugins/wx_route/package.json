@@ -1,0 +1,41 @@
+{
+  "name": "@heimdallr-sdk/wx-route",
+  "version": "0.0.8",
+  "description": "A Plugin For Wechat SDK",
+  "license": "MIT",
+  "author": "LuciferHuang",
+  "main": "dist/wx_route.umd.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "files": [
+    "dist",
+    "esm"
+  ],
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/wx_route/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+  },
+  "keywords": [
+    "heimdallr",
+    "sdk",
+    "wechat",
+    "applet",
+    "route",
+    "monitor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "rimraf esm && rollup -c rollup.config.dev.js -w",
+    "build": "rimraf dist esm && rollup -c"
+  },
+  "dependencies": {
+    "@heimdallr-sdk/types": "workspace:^",
+    "@heimdallr-sdk/utils": "workspace:^"
+  }
+}

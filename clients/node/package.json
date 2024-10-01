@@ -1,0 +1,44 @@
+{
+  "name": "@heimdallr-sdk/node",
+  "version": "0.0.15",
+  "description": "A SDK For Monitoring NodeJs Errors",
+  "license": "MIT",
+  "author": "LuciferHuang",
+  "main": "dist/node.umd.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "files": [
+    "dist",
+    "esm"
+  ],
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/node/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+  },
+  "keywords": [
+    "heimdallr",
+    "sdk",
+    "NodeJs",
+    "monitor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "rimraf esm && rollup -c rollup.config.dev.js -w",
+    "build": "rimraf dist esm && rollup -c"
+  },
+  "dependencies": {
+    "@heimdallr-sdk/core": "workspace:^",
+    "@heimdallr-sdk/types": "workspace:^",
+    "@heimdallr-sdk/utils": "workspace:^",
+    "node-fetch": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.2"
+  }
+}

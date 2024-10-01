@@ -1,0 +1,43 @@
+{
+  "name": "@heimdallr-sdk/webpack-plugin-sourcemap-upload",
+  "version": "0.0.5",
+  "description": "A Plugin For Webpack Upload Sourcemap Files",
+  "license": "MIT",
+  "author": "LuciferHuang",
+  "main": "dist/webpack-plugin-sourcemap-upload.umd.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "files": [
+    "dist",
+    "esm"
+  ],
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/webpack-plugin-sourcemap-upload/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+  },
+  "keywords": [
+    "heimdallr",
+    "plugin",
+    "browser",
+    "sourcemap",
+    "webpack"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "rimraf esm && rollup -c rollup.config.dev.js -w",
+    "build": "rimraf dist esm && rollup -c"
+  },
+  "dependencies": {
+    "@heimdallr-sdk/types": "workspace:^",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.2"
+  }
+}

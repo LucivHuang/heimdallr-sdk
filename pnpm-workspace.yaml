@@ -1,0 +1,8 @@
+packages:
+  - 'libs/*'
+  - 'clients/*'
+  - 'browser_plugins/*'
+  - 'wx_plugins/*'
+  - 'tools/*'
+  - 'playground/*'
+  - 'docs'

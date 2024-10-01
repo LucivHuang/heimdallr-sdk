@@ -1,44 +1,39 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "allowUnreachableCode": false, // 报告执行不到的代码错误
-    "allowUnusedLabels": false, // 不报告未使用的标签错误
-    "alwaysStrict": false, // 以严格模式解析并为每个源文件生成 "use strict"语句
-    "strictNullChecks": false, // 当尝试在可能为null或undefined的变量上访问属性时，报告错误 (一开始没开，现在开启导致很多错误，下次统一修复)
-    "baseUrl": ".", // 工作根目录，会影响vscode import生成的路径
-    "preserveConstEnums": false, // true 使用 const enum 产生内联成员，会导致没有引入的const enum也会生成代码
-    "isolatedModules": false, // 将模块视为独立的，不会被其他模块所引用
-    "experimentalDecorators": true, // 启用实验性的ES装饰器
-    "moduleResolution": "Node", // 引入package.json不会报红
-    "sourceMap": false, // 生产环境禁止开启
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": false,
+    "strictNullChecks": false,
+    "baseUrl": ".",
+    "preserveConstEnums": false,
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "Node",
+    "sourceMap": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "pretty": true,
-    "noImplicitAny": false, // 是否默认禁用 any
-    "removeComments": true, // 是否移除注释
-    "forceConsistentCasingInFileNames": true, //禁止对同一个文件的不一致的引用。
+    "noImplicitAny": false,
+    "removeComments": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@heimdallr-sdk/*": ["packages/*/src"]
+      "@heimdallr-sdk/*": ["libs/*/src", "clients/*/src"]
     },
     "types": [],
-    "target": "ES5", // 编译成什么版本
-    "module": "CommonJS", // 当前代码语法
-    // "outDir": "./dist/", // 输出目录
-    "declaration": true, // 是否自动创建类型声明文件
-    // "declarationMap": true,
-    // "declarationDir": "./dist/packages/", // 类型声明文件的输出目录
+    "target": "ES5",
+    "module": "CommonJS",
+    "declaration": true,
     "typeRoots": [
-      // 指定某个文件夹的声明文件
       "node_modules/@types"
     ],
-    "allowJs": false, // 不允许编译javascript文件。
+    "allowJs": false,
     "lib": [
-      // 编译过程中需要引入的库文件的列表
       "es6",
       "dom",
       "es2017"
     ]
   },
-  "include": ["packages"],
+  "include": ["libs", "clients", "browser_plugins", "wx_plugins", "tools"],
   "exclude": ["node_modules"]
 }

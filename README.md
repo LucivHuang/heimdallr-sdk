@@ -11,8 +11,8 @@ To check out docs, visit [heimdallr-sdk](https://luciferhuang.github.io/heimdall
 
 ## Env
 
-- node version: `16+`
-- npm script: `yarn`
+- node version: `20.16.0`
+- npm script: `pnpm`
 
 ## Preparation
 
@@ -23,7 +23,7 @@ Make sure `MySQL` and `RabbitMQ` are installed
 Installation Dependency
 
 ```bash
-yarn
+pnpm i
 ```
 
 Ensure that the local MySQL database service is started
@@ -34,19 +34,13 @@ Ensure that the local MySQL database service is started
 Initialize the database and automatically create a database named `test_base` database for debugging
 
 ```bash
-yarn prisma
-```
-
-If this is the first run, execute the build script first
-
-```bash
-yarn build
+pnpm run prisma
 ```
 
 Start Local Service
 
 ```bash
-yarn dev
+pnpm run dev
 ```
 
 ## Build
@@ -54,25 +48,25 @@ yarn dev
 Installation Dependency
 
 ```bash
-yarn
+pnpm i
 ```
 
 Build a single package
 
 ```bash
-yarn workspace [packageName] build
+pnpm --filter [packageName] run build
 ```
 
 For example, build a browser package
 
 ```bash
-yarn workspace @heimdallr-sdk/browser build
+pnpm --filter @heimdallr-sdk/browser run build
 ```
 
 Build all packages
 
 ```bash
-yarn build
+pnpm run build
 ```
 
 ## Sponsor

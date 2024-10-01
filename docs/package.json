@@ -1,4 +1,18 @@
 {
+  "name": "@heimdallr-sdk/docs",
+  "version": "0.0.2",
+  "description": "@heimdallr-sdk/docs",
+  "license": "MIT",
+  "author": "LuciferHuang",
+  "type": "module",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+  },
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",

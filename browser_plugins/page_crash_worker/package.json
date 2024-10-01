@@ -1,0 +1,38 @@
+{
+  "name": "@heimdallr-sdk/page-crash-worker",
+  "version": "0.0.22",
+  "description": "@heimdallr-sdk/page-crash-worker",
+  "license": "MIT",
+  "author": "LuciferHuang",
+  "main": "dist/page_crash_worker.iife.js",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/page_crash_worker/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+  },
+  "keywords": [
+    "heimdallr",
+    "sdk",
+    "browser",
+    "crash",
+    "Web Worker",
+    "monitor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "rollup -c rollup.config.dev.js -w",
+    "build": "rimraf dist && rollup --c"
+  },
+  "dependencies": {
+    "@heimdallr-sdk/types": "workspace:^",
+    "@heimdallr-sdk/utils": "workspace:^"
+  }
+}

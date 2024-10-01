@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "es6",
+    "outDir": "esm",
+    "types": ["node"],
+    "lib": ["es6", "es2017"]
+  },
+  "include": ["src/**/*"]
+}

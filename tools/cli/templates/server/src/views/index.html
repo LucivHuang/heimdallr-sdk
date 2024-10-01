@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>heimdallr-sdk API DOC</title>
+    <style>
+      section {
+        padding: 0 80px;
+        margin-bottom: 18px;
+      }
+      h2 {
+        color: lightblue;
+      }
+      h2 > span {
+        color: orange;
+        font-size: 14px;
+      }
+      .api-container {
+        padding: 12px 18px;
+        border: 1px dashed #333333;
+        border-radius: 8px;
+      }
+      pre {
+        border: 1px dotted #ddd;
+        padding: 8px 12px;
+        background-color: #eee;
+        border-radius: 3px;
+      }
+      th,
+      td {
+        padding: 3px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>1. Project</h1>
+        <h2>
+          init
+          <span>[GET]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/project/init</p>
+          <h3>params</h3>
+          <table border>
+            <thead>
+              <th>名称</th>
+              <th>类型</th>
+              <th>描述</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>name</td>
+                <td>string</td>
+                <td>应用名称</td>
+              </tr>
+              <tr>
+                <td>leader</td>
+                <td>string</td>
+                <td>应用负责人</td>
+              </tr>
+              <tr>
+                <td>desc</td>
+                <td>string</td>
+                <td>应用描述（非必填）</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>response</h3>
+          <pre>
+            {
+              code: 0,
+              data: {
+                name: 'xxx',
+                leader: 'xxx',
+                desc: 'xxx'
+              },
+              msg: 'success'
+            }
+          </pre>
+        </div>
+        <h2>
+          list
+          <span>[GET]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/project/list</p>
+          <h3>params</h3>
+          <table border>
+            <thead>
+              <th>名称</th>
+              <th>类型</th>
+              <th>描述</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>psize</td>
+                <td>string</td>
+                <td>每页条数</td>
+              </tr>
+              <tr>
+                <td>pindex</td>
+                <td>string</td>
+                <td>页码</td>
+              </tr>
+              <tr>
+                <td>order</td>
+                <td>string</td>
+                <td>排序方式</td>
+              </tr>
+              <tr>
+                <td>sort</td>
+                <td>string</td>
+                <td>排序字段</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>any</td>
+                <td>允许搜索应用字段</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>response</h3>
+          <pre>
+            {
+              code: 0,
+              data: {
+                list: [
+                  {
+                    id: 'xxx',
+                    name: 'xxx',
+                    leader: 'xxx',
+                    desc: 'xxx',
+                    ctime: 'xxx'
+                  }
+                ],
+                total: 1
+              },
+              msg: 'success'
+            }
+          </pre>
+        </div>
+      </section>
+      <section>
+        <h1>2. Statistic</h1>
+        <h2>
+          total
+          <span>[GET]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/statistic/total</p>
+          <h3>response</h3>
+          <pre>
+            {
+              code: 0,
+              data: {
+                api: 'xxx', // 慢接口数
+                err: 'xxx', // 异常数量
+                fmp: 'xxx' // 慢页面数量
+              },
+              msg: 'success'
+            }
+          </pre>
+        </div>
+        <h2>
+          proj
+          <span>[GET]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/statistic/proj</p>
+          <h3>response</h3>
+          <pre>
+            {
+              code: 0,
+              data: [
+                {
+                  id: 'xxx',
+                  err: 123,
+                  api: 456,
+                  fmp: 789
+                }
+              ],
+              msg: 'success'
+            }
+          </pre>
+        </div>
+      </section>
+      <section>
+        <h1>3. Log</h1>
+        <h2>
+          report
+          <span>[POST/GET]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/log/report</p>
+          <h3>params</h3>
+          <table border>
+            <thead>
+              <th>名称</th>
+              <th>类型</th>
+              <th>描述</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>aid</td>
+                <td>string</td>
+                <td>应用id</td>
+              </tr>
+              <tr>
+                <td>lid</td>
+                <td>string</td>
+                <td>日志id</td>
+              </tr>
+              <tr>
+                <td>t</td>
+                <td>string</td>
+                <td>上报时间</td>
+              </tr>
+              <tr>
+                <td>dat</td>
+                <td>string</td>
+                <td>上报信息（json字符串）</td>
+              </tr>
+              <tr>
+                <td>b</td>
+                <td>string</td>
+                <td>面包屑（json字符串）</td>
+              </tr>
+              <tr>
+                <td>url</td>
+                <td>string</td>
+                <td>页面路径</td>
+              </tr>
+              <tr>
+                <td>lan</td>
+                <td>string</td>
+                <td>浏览器语言</td>
+              </tr>
+              <tr>
+                <td>ua</td>
+                <td>string</td>
+                <td>浏览器 userAgent</td>
+              </tr>
+              <tr>
+                <td>ttl</td>
+                <td>string</td>
+                <td>页面标题</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>response</h3>
+          <pre>
+            {
+              code: 0,
+              data: null,
+              msg: 'success'
+            }
+          </pre>
+        </div>
+        <h2>
+          list
+          <span>[GET]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/log/list</p>
+          <h3>params</h3>
+          <table border>
+            <thead>
+              <th>名称</th>
+              <th>类型</th>
+              <th>描述</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>psize</td>
+                <td>string</td>
+                <td>每页条数</td>
+              </tr>
+              <tr>
+                <td>pindex</td>
+                <td>string</td>
+                <td>页码</td>
+              </tr>
+              <tr>
+                <td>order</td>
+                <td>string</td>
+                <td>排序方式</td>
+              </tr>
+              <tr>
+                <td>sort</td>
+                <td>string</td>
+                <td>排序字段</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>any</td>
+                <td>允许搜索应用字段</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>response</h3>
+          <pre>
+            {
+              code: 0,
+              data: {
+                list: [
+                  {
+                    id: 'xxx',
+                    type: 'xxx', // 类型
+                    sub_type: 'xxx', // 子类型
+                    ascription: 'xxx', // 归属应用
+                    data: 'xxx', // 详细信息
+                    otime: 'xxx' // 发生时间
+                  }
+                ],
+                total: 1
+              },
+              msg: 'success'
+            }
+          </pre>
+        </div>
+        <h2>
+          detail
+          <span>[GET]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/log/detail</p>
+          <h3>params</h3>
+          <table border>
+            <thead>
+              <th>名称</th>
+              <th>类型</th>
+              <th>描述</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>id</td>
+                <td>string</td>
+                <td>日志id</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>response</h3>
+          <pre>
+            {
+              code: 0,
+              data: {
+                path: 'xxx', // 页面路径
+                type: 'xxx', // 类型
+                sub_type: 'xxx', // 子类型
+                ascription_name: 'xxx', // 归属应用名称
+                ctime: 'xxx', // 发生时间
+                page_title: 'xxx', // 页面标题
+                user_agent: 'xxx', // 浏览器userAgent
+                data: 'xxx', // 详细数据
+                breadcrumb: [] // 面包屑
+              },
+              msg: 'success'
+            }
+          </pre>
+        </div>
+      </section>
+      <section>
+        <h1>4. SourceMap</h1>
+        <h2>
+          upload
+          <span>[POST]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/sourcemap/upload</p>
+          <h3>params[FormData]</h3>
+          <table border>
+            <thead>
+              <th>名称</th>
+              <th>类型</th>
+              <th>描述</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>file</td>
+                <td></td>
+                <td>文件流对象</td>
+              </tr>
+              <tr>
+                <td>dirname</td>
+                <td>string</td>
+                <td>目录名称</td>
+              </tr>
+              <tr>
+                <td>filename</td>
+                <td>string</td>
+                <td>文件名称</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h2>
+          search
+          <span>[GET]</span>
+        </h2>
+        <div class="api-container">
+          <h3>url</h3>
+          <p>/sourcemap/search</p>
+          <h3>params</h3>
+          <table border>
+            <thead>
+              <th>名称</th>
+              <th>类型</th>
+              <th>描述</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>lineno</td>
+                <td>number</td>
+                <td>行数</td>
+              </tr>
+              <tr>
+                <td>colno</td>
+                <td>number</td>
+                <td>列数</td>
+              </tr>
+              <tr>
+                <td>filename</td>
+                <td>string</td>
+                <td>文件名称</td>
+              </tr>
+              <tr>
+                <td>app_name</td>
+                <td>string</td>
+                <td>应用名称</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>response</h3>
+          <pre>
+            {
+              code: 0,
+              data: {
+                column: '',
+                line: '',
+                source: '',
+                code: ''
+              },
+              msg: 'success'
+            }
+          </pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

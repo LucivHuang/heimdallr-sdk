@@ -37,11 +37,10 @@ import UploadSourceMapPlugin from "@heimdallr-sdk/webpack-plugin-sourcemap-uploa
 const config = {
   plugins: [
     new UploadSourceMapPlugin({
-      appname: "playground",
+      app_name: "playground",
       url: `http://localhost:8001/sourcemap/upload`,
     }),
   ],
-  // TODO--
 };
 ```
 
@@ -62,14 +61,13 @@ export default defineConfig({
   plugins: [
     vue(),
     sourceMapUpload({
-      appname: "playground",
+      app_name: "playground",
       url: `http://localhost:8001/sourcemap/upload`,
     }),
   ],
   build: {
     sourcemap: true,
   },
-  // TODO--
 });
 ```
 

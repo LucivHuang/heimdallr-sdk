@@ -1,0 +1,41 @@
+{
+  "name": "@heimdallr-sdk/customer",
+  "version": "0.0.21",
+  "description": "A plugin For Browser SDK",
+  "license": "MIT",
+  "author": "LuciferHuang",
+  "main": "dist/customer.umd.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "files": [
+    "dist",
+    "esm"
+  ],
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/customer/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+  },
+  "keywords": [
+    "heimdallr",
+    "sdk",
+    "browser",
+    "console",
+    "log",
+    "monitor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "rimraf esm && rollup -c rollup.config.dev.js -w",
+    "build": "rimraf dist esm && rollup -c"
+  },
+  "dependencies": {
+    "@heimdallr-sdk/types": "workspace:^",
+    "@heimdallr-sdk/utils": "workspace:^"
+  }
+}
