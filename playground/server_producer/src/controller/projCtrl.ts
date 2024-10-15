@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { failResponse, successResponse } from '../lib/utils';
 import Rabbit from '../lib/rabbitMQ';
 
@@ -5,11 +6,13 @@ const mq = new Rabbit('localhost');
 
 export async function init(req, res) {
   const appInfo = { ...req.query };
-  const { id, name } = appInfo;
-  if (!id && !name) {
-    res.send(failResponse('missing id or name'));
+  const { name } = appInfo;
+  if (!name) {
+    res.send(failResponse('missing name'));
     return;
   }
+  appInfo.id = nanoid();
+  appInfo.ctime = new Date();
   // 入列
   const { code, msg } = await mq.sendQueueMsg('projQueue', JSON.stringify(appInfo));
   if (code === 0) {

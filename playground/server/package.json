@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/server",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "private": true,
   "description": "",
   "license": "MIT",
@@ -36,6 +36,7 @@
     "express": "^4.18.1",
     "express-formidable": "^1.2.0",
     "express-ip": "^1.0.4",
+    "nanoid": "^3.3.6",
     "portfinder": "^1.0.32",
     "prisma": "^4.2.0",
     "source-map": "^0.7.4"

@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { failResponse, successResponse } from '../lib/utils';
 import ProjModel from '../models/projModel';
 
@@ -5,9 +6,9 @@ const projModel = new ProjModel();
 
 export async function init(req, res) {
   const appInfo = { ...req.query };
-  const { id, name } = appInfo;
-  if (!id && !name) {
-    res.send(failResponse('missing id or name'));
+  const { name } = appInfo;
+  if (!name) {
+    res.send(failResponse('missing name'));
     return;
   }
   const { data: projects } = await projModel.find(1, 1, { name });
@@ -15,6 +16,7 @@ export async function init(req, res) {
     res.send(successResponse(projects[0], 'already exist'));
     return;
   }
+  appInfo.id = nanoid();
   appInfo.ctime = new Date();
   const { status, msg } = await projModel.add([appInfo]);
   if (status) {

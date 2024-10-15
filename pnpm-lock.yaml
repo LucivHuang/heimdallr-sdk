@@ -469,6 +469,9 @@ importers:
       express-ip:
         specifier: ^1.0.4
         version: 1.0.4
+      nanoid:
+        specifier: ^3.3.6
+        version: 3.3.7
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
@@ -579,6 +582,9 @@ importers:
       express-ip:
         specifier: ^1.0.4
         version: 1.0.4
+      nanoid:
+        specifier: ^3.3.6
+        version: 3.3.7
       portfinder:
         specifier: ^1.0.32
         version: 1.0.32
