@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/wx",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A SDK For Monitoring wechat applet",
   "license": "MIT",
   "author": "LuciferHuang",

@@ -25,10 +25,7 @@ class BrowserClient extends Core<BrowserOptionsType> {
       data: { data } = {}
     } = await this.report(
       initUrl,
-      {
-        id: generateUUID(),
-        ...app
-      },
+      app,
       BrowserReportType.GET
     );
     this.setDiff(date);

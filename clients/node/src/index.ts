@@ -20,7 +20,6 @@ class NodeClient extends Core<NodeOptionsType> {
     const { initUrl, app } = this.getContext();
     const ctime = Date.now();
     const params = {
-      id: generateUUID(),
       ...app,
       ctime
     };

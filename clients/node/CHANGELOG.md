@@ -1,5 +1,11 @@
 # @heimdallr-sdk/node
 
+## 0.0.16
+
+### Patch Changes
+
+- feat: appId 改由服务端生成
+
 ## 0.0.15
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @heimdallr-sdk/wx
 
+## 0.0.13
+
+### Patch Changes
+
+- feat: appId 改由服务端生成
+
 ## 0.0.12
 
 ### Patch Changes

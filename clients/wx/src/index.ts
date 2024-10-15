@@ -35,7 +35,6 @@ export class WxClient extends Core<WxOptionsType> {
     const { initUrl, app } = this.getContext();
     const ctime = this.getTime();
     const params = {
-      id: generateUUID(),
       ...app,
       ctime
     };

@@ -1,5 +1,12 @@
 # @heimdallr-sdk/mock-app
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/browser@0.0.33
+
 ## 0.0.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @heimdallr-sdk/browser
 
+## 0.0.33
+
+### Patch Changes
+
+- feat: appId 改由服务端生成
+
 ## 0.0.32
 
 ### Patch Changes
