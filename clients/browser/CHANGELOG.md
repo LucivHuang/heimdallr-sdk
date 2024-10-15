@@ -1,5 +1,11 @@
 # @heimdallr-sdk/browser
 
+## 0.0.34
+
+### Patch Changes
+
+- feat: appId 缓存至 localStorage
+
 ## 0.0.33
 
 ### Patch Changes

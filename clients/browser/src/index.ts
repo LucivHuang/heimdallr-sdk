@@ -1,3 +1,4 @@
+import { setStore } from './../../../libs/utils/src/browser';
 import { Core, Breadcrumb } from '@heimdallr-sdk/core';
 import { IAnyObject, PlatformTypes, BrowserReportType, PageLifeType, ClientInfoType, StoreKeyType, StoreType } from '@heimdallr-sdk/types';
 import { generateUUID, beacon, get, imgRequest, post, getCookie, setCookie, getStore } from '@heimdallr-sdk/utils';
@@ -23,13 +24,10 @@ class BrowserClient extends Core<BrowserOptionsType> {
     const {
       headers: { date },
       data: { data } = {}
-    } = await this.report(
-      initUrl,
-      app,
-      BrowserReportType.GET
-    );
+    } = await this.report(initUrl, app, BrowserReportType.GET);
     this.setDiff(date);
     const { id = '' } = data || {};
+    setStore(StoreType.LOCAL, StoreKeyType.APP, id);
     return id;
   }
 
@@ -57,7 +55,7 @@ class BrowserClient extends Core<BrowserOptionsType> {
     if (!data) {
       return null;
     }
-    
+
     if (!this.sessionID) {
       this.sessionID = getStore(StoreType.SESSION, StoreKeyType.SESSION_ID);
       if (!this.sessionID) {
@@ -93,7 +91,7 @@ class BrowserClient extends Core<BrowserOptionsType> {
       sid: this.sessionID,
       uid,
       p: PlatformTypes.BROWSER,
-        url: href,
+      url: href,
       ...extData,
       ...data
     };

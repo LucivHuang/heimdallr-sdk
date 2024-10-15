@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/browser",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "A SDK For Monitoring Browser",
   "license": "MIT",
   "author": "LuciferHuang",
