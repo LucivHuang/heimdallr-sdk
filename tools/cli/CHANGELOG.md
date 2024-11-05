@@ -1,5 +1,11 @@
 # @heimdallr-sdk/cli
 
+## 0.0.26
+
+### Patch Changes
+
+- fix: Cannot find module './lib/utils'
+
 ## 0.0.25
 
 ### Patch Changes

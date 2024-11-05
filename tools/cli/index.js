@@ -6,8 +6,6 @@ const { renderFile } = require('ejs');
 const { successBox, errorBox } = require('./lib/utils');
 const { BASE_QS, SERVER_QS, RABBIT_QS, CLIENT_QS } = require('./lib/questions');
 
-// main
-
 prompt([
   {
     type: 'list',
