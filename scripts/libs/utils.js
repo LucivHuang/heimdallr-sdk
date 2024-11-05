@@ -41,8 +41,29 @@ const getDirByType = (type) => {
   return '';
 };
 
+const isBelongLibs = (file) => /^libs\//.test(file);
+
+const isBelongCli = (file) => /^clients\//.test(file);
+
+const isBelongBrowserPlugins = (file) => /^browser_plugins\//.test(file);
+
+const isBelongWxPlugins = (file) => /^wx_plugins\//.test(file);
+
+const isBelongTools = (file) => /^tools\//.test(file);
+
+const isBelongPlayground = (file) => /^playground\//.test(file);
+
+const isBelongDocs = (file) => /^docs\//.test(file);
+
 module.exports = {
   IGNORES,
   getPkgOptsByMode,
   getDirByType,
+  isBelongLibs,
+  isBelongCli,
+  isBelongBrowserPlugins,
+  isBelongWxPlugins,
+  isBelongTools,
+  isBelongPlayground,
+  isBelongDocs,
 };

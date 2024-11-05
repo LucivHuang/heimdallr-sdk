@@ -1,6 +1,6 @@
 {
   "name": "heimdallr-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "license": "MIT",
   "author": "LuciferHuang",
@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./scripts/run.js",
     "build": "cross-env NODE_ENV=production node ./scripts/run.js",
+    "commit": "node ./scripts/commit.js",
     "prisma": "npx prisma db push --schema ./playground/server/schema.prisma",
     "prepare": "husky install",
     "lint": "eslint packages",
@@ -46,6 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
     "body-parser": "^1.20.0",
+    "boxen": "^5.1.2",
     "browser-sync": "^2.27.10",
     "chalk": "^4.1.2",
     "concurrently": "^9.0.1",
