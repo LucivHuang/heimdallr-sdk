@@ -1,5 +1,11 @@
 # @heimdallr-sdk/cli
 
+## 0.0.27
+
+### Patch Changes
+
+- feat: Remove unnecessary functions
+
 ## 0.0.26
 
 ### Patch Changes
