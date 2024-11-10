@@ -26,16 +26,17 @@ router.get('/test', (req, res) => {
 });
 
 // resource
-router.use('/browser-dist', express.static(resolveDirname('../../../../packages/browser/dist')));
-router.use('/customer-dist', express.static(resolveDirname('../../../../packages/customer/dist')));
-router.use('/dom-dist', express.static(resolveDirname('../../../../packages/dom/dist')));
-router.use('/fetch-dist', express.static(resolveDirname('../../../../packages/fetch/dist')));
-router.use('/hash-dist', express.static(resolveDirname('../../../../packages/hash/dist')));
-router.use('/history-dist', express.static(resolveDirname('../../../../packages/history/dist')));
-router.use('/crash-dist', express.static(resolveDirname('../../../../packages/page_crash/dist')));
-router.use('/crash-worker', express.static(resolveDirname('../../../../packages/page_crash_worker/dist')));
-router.use('/performance-dist', express.static(resolveDirname('../../../../packages/performance/dist')));
-router.use('/xhr-dist', express.static(resolveDirname('../../../../packages/xhr/dist')));
+router.use('/browser-dist', express.static(resolveDirname('../../../clients/browser/dist')));
+router.use('/customer-dist', express.static(resolveDirname('../../../../browser_plugins/customer/dist')));
+router.use('/dom-dist', express.static(resolveDirname('../../../../browser_plugins/dom/dist')));
+router.use('/fetch-dist', express.static(resolveDirname('../../../../browser_plugins/fetch/dist')));
+router.use('/hash-dist', express.static(resolveDirname('../../../../browser_plugins/hash/dist')));
+router.use('/history-dist', express.static(resolveDirname('../../../../browser_plugins/history/dist')));
+router.use('/crash-dist', express.static(resolveDirname('../../../../browser_plugins/page_crash/dist')));
+router.use('/crash-worker', express.static(resolveDirname('../../../../browser_plugins/page_crash_worker/dist')));
+router.use('/performance-dist', express.static(resolveDirname('../../../../browser_plugins/performance/dist')));
+router.use('/xhr-dist', express.static(resolveDirname('../../../../browser_plugins/xhr/dist')));
+router.use('/record-dist', express.static(resolveDirname('../../../../browser_plugins/record/dist')));
 
 // views
 router.use('/', express.static(resolveDirname('../views')));
