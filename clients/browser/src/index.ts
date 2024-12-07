@@ -1,7 +1,7 @@
 import { setStore } from './../../../libs/utils/src/browser';
 import { Core, Breadcrumb } from '@heimdallr-sdk/core';
 import { IAnyObject, PlatformTypes, BrowserReportType, PageLifeType, ClientInfoType, StoreKeyType, StoreType } from '@heimdallr-sdk/types';
-import { generateUUID, beacon, get, imgRequest, post, getCookie, setCookie, getStore } from '@heimdallr-sdk/utils';
+import { generateUUID, beacon, get, imgRequest, post, getCookie, setCookie, getStore, obj2query } from '@heimdallr-sdk/utils';
 import { BrowserOptionsType, BrowserReportPayloadDataType } from './types';
 import { nextTick } from './libs/nextTick';
 // 基础插件
@@ -45,7 +45,8 @@ class BrowserClient extends Core<BrowserOptionsType> {
       return;
     }
     if (type === BrowserReportType.POST) {
-      post(url, data);
+      const queryString = obj2query(data);
+      post(url, queryString);
       return;
     }
     return get(url, data);
