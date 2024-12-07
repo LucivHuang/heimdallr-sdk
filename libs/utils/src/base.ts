@@ -71,5 +71,8 @@ export const getDeepPropByDot = (keyPath: string, obj: Object) => {
  */
 export const obj2query = (params: IAnyObject) =>
   Object.keys(params)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+    .map((key) => {
+      const value = params[key];
+      return `${encodeURIComponent(key)}=${encodeURIComponent(typeof value !== 'string' ? JSON.stringify(value) : value)}`
+    })
     .join('&');

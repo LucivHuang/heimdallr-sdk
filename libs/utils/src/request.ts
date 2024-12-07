@@ -58,7 +58,7 @@ export const get = (url: string, data: Record<string, any>) => xhr(MethodTypes.G
  * @param {string} url - 接口地址
  * @param {Record<string, any>} data - 请求参数
  */
-export const post = (url: string, data: Record<string, any>) => xhr(MethodTypes.POST, url, data);
+export const post = (url: string, data: Record<string, any> | string) => xhr(MethodTypes.POST, url, data);
 
 /**
  * 基于 XMLHttpRequest 发送 HTTP 请求
