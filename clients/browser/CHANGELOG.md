@@ -1,5 +1,13 @@
 # @heimdallr-sdk/browser
 
+## 0.0.35
+
+### Patch Changes
+
+- feat: post请求改用string类型参数
+
+- Updated dependencies []:
+  - @heimdallr-sdk/utils@0.0.22
 ## 0.0.34
 
 ### Patch Changes
