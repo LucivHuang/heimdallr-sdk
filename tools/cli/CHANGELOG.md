@@ -1,5 +1,10 @@
 # @heimdallr-sdk/cli
 
+## 0.0.28
+
+### Patch Changes
+
+- chore(tools): 修改path数据类型
 ## 0.0.27
 
 ### Patch Changes
