@@ -21,7 +21,7 @@ model Session {
     account       String
     ip            String
     province      String
-    path          String
+    path          String   @db.LongText
     page_title    String
     platform      String
     stay_time     Int
@@ -47,7 +47,7 @@ model Log {
     ascription_id String
     data          String   @db.LongText
     platform      String
-    path          String
+    path          String   @db.LongText
 }
 
 model BreadCrumb {
