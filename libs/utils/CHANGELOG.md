@@ -1,5 +1,10 @@
 # @heimdallr-sdk/utils
 
+## 0.0.22
+
+### Patch Changes
+
+- feat: post支持string类型参数
 ## 0.0.21
 
 ### Patch Changes
