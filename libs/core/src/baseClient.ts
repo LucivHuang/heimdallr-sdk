@@ -22,7 +22,7 @@ export abstract class Core<O extends BaseOptionsType> {
     this.options = options;
     this.initConsole();
     if (!this.isRightEnv()) {
-      console.log('Client does not match the environment');
+      console.warn(TAG, 'Client does not match the environment');
       return;
     }
     this.bindOptions();
@@ -59,7 +59,7 @@ export abstract class Core<O extends BaseOptionsType> {
     const { dsn, app, debug = false, enabled = true } = this.options;
 
     if (!app || !dsn) {
-      console.log('Missing app or dsn in options');
+      console.warn(TAG, 'Missing app or dsn in options');
       return;
     }
 
@@ -87,18 +87,18 @@ export abstract class Core<O extends BaseOptionsType> {
     for (const plugin of plugins) {
       const { name, monitor, transform } = plugin || {};
       if (!name || !monitor) {
-        console.log(`The plugin missing name or monitor.`);
+        console.warn(`The plugin missing name or monitor.`);
         continue;
       }
       if (map.has(name)) {
-        console.log(`The plugin name [${name}] is duplicate, please modify it.`);
+        console.warn(`The plugin name [${name}] is duplicate, please modify it.`);
         continue;
       }
       map.set(name, 1);
       try {
         monitor.call(this, sub.notify.bind(sub, name));
       } catch (error) {
-        console.log(error, ConsoleTypes.ERROR);
+        console.error(error);
       }
       const callback = (...args: any[]) => {
         const pluginDatas = typeof transform === 'function' ? transform.apply(this, args) : args;

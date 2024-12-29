@@ -1,5 +1,11 @@
 # @heimdallr-sdk/core
 
+## 0.0.27
+
+### Patch Changes
+
+- perf: optimize console output
+
 ## 0.0.26
 
 ### Patch Changes
