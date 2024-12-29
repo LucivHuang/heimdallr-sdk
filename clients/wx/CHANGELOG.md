@@ -1,5 +1,14 @@
 # @heimdallr-sdk/wx
 
+## 0.0.14
+
+### Patch Changes
+
+- perf: optimize console output
+
+- Updated dependencies []:
+  - @heimdallr-sdk/core@0.0.27
+
 ## 0.0.13
 
 ### Patch Changes

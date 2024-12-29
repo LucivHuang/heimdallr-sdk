@@ -5,10 +5,10 @@ import {
   EventTypes,
   ReportDataType,
   BrowserBreadcrumbTypes,
-  ConsoleTypes,
   BreadcrumbLevel,
   IAnyObject,
-  StoreType
+  StoreType,
+  TAG
 } from '@heimdallr-sdk/types';
 import { generateUUID, getStore, setStore } from '@heimdallr-sdk/utils';
 import { CodeErrorOptions, CodeErrorType, ResourceErrorType } from '../types';
@@ -37,7 +37,7 @@ const errorPlugin = (options: CodeErrorOptions): BasePluginType => {
         'error',
         (e: ErrorEvent) => {
           e.preventDefault();
-          console.log(e, ConsoleTypes.ERROR);
+          console.error(TAG, e);
           notify({
             category: EventTypes.ERROR,
             data: e

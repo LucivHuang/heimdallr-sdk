@@ -1,13 +1,23 @@
 # @heimdallr-sdk/browser
 
+## 0.0.36
+
+### Patch Changes
+
+- perf: optimize console output
+
+- Updated dependencies []:
+  - @heimdallr-sdk/core@0.0.27
+
 ## 0.0.35
 
 ### Patch Changes
 
-- feat: post请求改用string类型参数
+- feat: post 请求改用 string 类型参数
 
 - Updated dependencies []:
   - @heimdallr-sdk/utils@0.0.22
+
 ## 0.0.34
 
 ### Patch Changes

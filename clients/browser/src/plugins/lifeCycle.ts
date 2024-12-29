@@ -5,7 +5,8 @@ import {
   PageLifeType,
   ReportDataType,
   StoreKeyType,
-  StoreType
+  StoreType,
+  TAG
 } from '@heimdallr-sdk/types';
 import { generateUUID, getCookie, getStore, getDeepPropByDot, setStore } from '@heimdallr-sdk/utils';
 import { LifecycleDataType, LifeCycleMsgType, LifecycleOptions } from '../types';
@@ -32,7 +33,7 @@ function getIds(userIdentify: CustomerOptionType) {
   if (userPath && userPosi) {
     acc = getStoreUserId(userIdentify);
     if (!acc) {
-      console.log(`${userPath} does not exist on ${userPosi}`);
+      console.warn(TAG, `${userPath} does not exist on ${userPosi}`);
     }
   }
   return {

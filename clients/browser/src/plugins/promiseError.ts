@@ -3,9 +3,9 @@ import {
   BreadcrumbLevel,
   BrowserBreadcrumbTypes,
   BrowserErrorTypes,
-  ConsoleTypes,
   EventTypes,
-  ReportDataType
+  ReportDataType,
+  TAG
 } from '@heimdallr-sdk/types';
 import { generateUUID } from '@heimdallr-sdk/utils';
 import { PromiseErrorType } from '../types';
@@ -20,7 +20,7 @@ const PromiseErrorPlugin: BasePluginType = {
   monitor(notify: (data: CollectedType) => void) {
     window.addEventListener('unhandledrejection', (e: PromiseRejectionEvent) => {
       e.preventDefault();
-      console.log(e, ConsoleTypes.ERROR);
+      console.error(TAG, e);
       notify({
         category: EventTypes.ERROR,
         data: e

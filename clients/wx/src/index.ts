@@ -1,5 +1,5 @@
 import { Core } from '@heimdallr-sdk/core';
-import { IAnyObject, PageLifeType, EventTypes, voidFun, WxBreadcrumbTypes, PlatformTypes } from '@heimdallr-sdk/types';
+import { IAnyObject, PageLifeType, EventTypes, voidFun, WxBreadcrumbTypes, PlatformTypes, TAG } from '@heimdallr-sdk/types';
 import { generateUUID, replaceOld } from '@heimdallr-sdk/utils';
 import { Breadcrumb } from '@heimdallr-sdk/core';
 import { WxContextType, WxOptionsType, WxSettingType, WxTrackTypes } from './types';
@@ -249,7 +249,7 @@ const init = (options: WxOptionsType) => {
           break;
 
         default:
-          console.log('Unknown type');
+          console.warn(TAG, 'Unknown type');
           break;
       }
     }

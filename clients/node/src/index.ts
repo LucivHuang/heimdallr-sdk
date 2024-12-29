@@ -3,10 +3,10 @@ import { Core } from '@heimdallr-sdk/core';
 import {
   IAnyObject,
   InterfaceResponseType,
-  ConsoleTypes,
-  PlatformTypes
+  PlatformTypes,
+  TAG
 } from '@heimdallr-sdk/types';
-import { generateUUID, obj2query } from '@heimdallr-sdk/utils';
+import { obj2query } from '@heimdallr-sdk/utils';
 // 基础插件
 import errorPlugin from './plugins/uncaughtException';
 import { NodeOptionsType, NodeReportPayloadDataType } from './types';
@@ -42,7 +42,7 @@ class NodeClient extends Core<NodeOptionsType> {
       const res = await fetch(`${url}?${obj2query(data)}`);
       return (await res.json()  as InterfaceResponseType<any>);
     } catch (error) {
-      console.log(error, ConsoleTypes.ERROR);
+      console.error(TAG, error);
       return {
         code: -1,
         msg: error.message || '未知错误'

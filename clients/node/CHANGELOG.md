@@ -1,5 +1,14 @@
 # @heimdallr-sdk/node
 
+## 0.0.17
+
+### Patch Changes
+
+- perf: optimize console output
+
+- Updated dependencies []:
+  - @heimdallr-sdk/core@0.0.27
+
 ## 0.0.16
 
 ### Patch Changes

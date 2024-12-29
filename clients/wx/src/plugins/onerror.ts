@@ -2,11 +2,11 @@ import { generateUUID, replaceOld } from '@heimdallr-sdk/utils';
 import {
   BasePluginType,
   EventTypes,
-  ConsoleTypes,
   ReportDataType,
   voidFun,
   WxBreadcrumbTypes,
-  BreadcrumbLevel
+  BreadcrumbLevel,
+  TAG
 } from '@heimdallr-sdk/types';
 import { WxErrorDataType, WxErrorMsgType, WxErrorTypes } from '../types';
 
@@ -25,7 +25,7 @@ function errorPlugin(): BasePluginType {
                 originMethod.apply(this, args);
               }
               const [error] = args;
-              console.log(error, ConsoleTypes.ERROR);
+              console.error(TAG, error);
               notify({ err: error });
             };
           },
