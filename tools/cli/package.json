@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/cli",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "A cli for @heimdallr-sdk/manager and @heimdallr-sdk/server",
   "main": "index.js",
   "bin": {
