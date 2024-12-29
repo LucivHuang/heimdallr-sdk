@@ -242,7 +242,7 @@ export const copy = (text: string): boolean => {
   try {
     success = document.execCommand('copy');
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
   document.body.removeChild(textArea);
   return success;

@@ -52,7 +52,6 @@ export default function useListTable() {
       .then((res: any) => {
         const { total = 0, list = [] } = res;
         state.tableData = tableDeserialize(list);
-        console.log(state.tableData);
         state.allItems = total;
       })
       .catch(() => {});

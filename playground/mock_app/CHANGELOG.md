@@ -1,5 +1,15 @@
 # @heimdallr-sdk/mock-app
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/page-crash@0.0.21
+  - @heimdallr-sdk/hash@0.0.20
+  - @heimdallr-sdk/browser@0.0.36
+  - @heimdallr-sdk/core@0.0.27
+
 ## 0.0.4
 
 ### Patch Changes

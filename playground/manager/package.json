@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/manager",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "private": true,
   "description": "@heimdallr-sdk/manager",
   "license": "MIT",
