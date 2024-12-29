@@ -1,4 +1,4 @@
-import { BasePluginType, ClientInfoType, PlatformTypes, StoreKeyType, StoreType } from '@heimdallr-sdk/types';
+import { BasePluginType, ClientInfoType, PlatformTypes, StoreKeyType, StoreType, TAG } from '@heimdallr-sdk/types';
 import { generateUUID, getStore, getCookie } from '@heimdallr-sdk/utils';
 
 export interface PageCrashPluginOptions {
@@ -18,7 +18,7 @@ function pageCrashPlugin(options: PageCrashPluginOptions = {}): BasePluginType {
     monitor() {
       if (Worker) {
         if (!pageCrashWorkerUrl) {
-          console.log('Missing pageCrashWorkerUrl in options');
+          console.warn(TAG, 'Missing pageCrashWorkerUrl in options');
           return;
         }
         const crashWorker = new Worker(pageCrashWorkerUrl);

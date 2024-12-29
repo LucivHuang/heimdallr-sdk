@@ -1,5 +1,11 @@
 # @heimdallr-sdk/hash
 
+## 0.0.20
+
+### Patch Changes
+
+- perf: optimize console output
+
 ## 0.0.19
 
 ### Patch Changes

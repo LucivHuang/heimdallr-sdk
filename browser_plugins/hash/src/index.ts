@@ -14,7 +14,6 @@ function hashPlugin(): BasePluginType {
     name: 'hashPlugin',
     monitor(notify: (data: RouteDataMsgType) => void) {
       window.addEventListener('hashchange', function (e: HashChangeEvent) {
-        console.log('监听到了', e)
         const { oldURL: from, newURL: to } = e;
         if (from === to) {
           return;

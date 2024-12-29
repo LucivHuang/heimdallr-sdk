@@ -7,10 +7,10 @@ import {
   ReportDataType,
   EventTypes,
   BrowserBreadcrumbTypes,
-  ConsoleTypes,
   BreadcrumbLevel,
   IAnyObject,
-  StoreType
+  StoreType,
+  TAG
 } from '@heimdallr-sdk/types';
 import { VueOptions, VueTypes } from './types';
 import { parseStack } from './libs';
@@ -26,7 +26,7 @@ function vuePlugin(options: VueOptions = {}): BasePluginType {
       const { vue: vm } = options;
       const { debug } = this.getContext();
       if (!vm) {
-        console.log('Missing Vue in options');
+        console.warn(TAG, 'Missing Vue in options');
         return;
       }
       const { errorHandler, silent } = vm.config;
@@ -44,8 +44,7 @@ function vuePlugin(options: VueOptions = {}): BasePluginType {
           if (typeof errorHandler === 'function') {
             (errorHandler as UnknownFunc).call(this.vm, error, vm, lifecycleHook);
           } else if (!silent) {
-            const message = `Error in ${lifecycleHook}: "${stack && stack.toString()}"`;
-            console.log(message, ConsoleTypes.ERROR);
+            console.error(TAG, `Error in ${lifecycleHook}: "${stack && stack.toString()}"`);
           }
         }
       };

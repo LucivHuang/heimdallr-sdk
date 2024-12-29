@@ -1,5 +1,11 @@
 # @heimdallr-sdk/vue
 
+## 0.0.23
+
+### Patch Changes
+
+- perf: optimize console output
+
 ## 0.0.22
 
 ### Patch Changes
