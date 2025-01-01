@@ -1,5 +1,12 @@
 # @heimdallr-sdk/mock-app
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/dom@0.0.22
+
 ## 0.0.5
 
 ### Patch Changes
