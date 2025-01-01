@@ -1,5 +1,11 @@
 # @heimdallr-sdk/dom
 
+## 0.0.22
+
+### Patch Changes
+
+- feat: add sensitive word config
+
 ## 0.0.21
 
 ### Patch Changes

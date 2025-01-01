@@ -4,22 +4,20 @@ import { DomMsgType, DomOptions } from './types';
 import { htmlElementAsString } from './lib';
 
 export interface DomCollectedType {
-  category: DomTypes;
   doc: Document;
   ev: MouseEvent;
 }
 
 function domPlugin(options: DomOptions = {}): BasePluginType {
+  const { throttleDelayTime = 300, sensitiveClasses, sensitiveTags = [] } = options;
   return {
     name: 'domPlugin',
     monitor(notify: (collecteData: DomCollectedType) => void) {
-      const { throttleDelayTime = 300 } = options;
       const clickThrottle = throttle(notify, throttleDelayTime);
       document.addEventListener(
         'click',
         function (ev) {
           clickThrottle({
-            category: DomTypes.CLICK,
             doc: this,
             ev,
           });
@@ -28,12 +26,12 @@ function domPlugin(options: DomOptions = {}): BasePluginType {
       );
     },
     transform(collectedData: DomCollectedType): ReportDataType<DomMsgType> {
-      const { category, doc, ev } = collectedData;
+      const { doc, ev } = collectedData;
       const active = doc.activeElement as HTMLElement;
-      const htmlString = htmlElementAsString(active);
-      if (!htmlString) {
+      if (!active) {
         return null;
       }
+      const htmlString = htmlElementAsString(active, sensitiveClasses, sensitiveTags);
       const { pageX, pageY } = ev;
       // 添加用户行为栈
       const lid = generateUUID();
@@ -48,7 +46,7 @@ function domPlugin(options: DomOptions = {}): BasePluginType {
         t: this.getTime(),
         e: EventTypes.DOM,
         dat: {
-          st: category,
+          st: DomTypes.CLICK,
           ele: htmlString,
           x: pageX,
           y: pageY

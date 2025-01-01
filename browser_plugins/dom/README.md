@@ -9,6 +9,8 @@
 |配置名称|类型|是否必填|描述|默认值|
 |-|-|-|-|-|
 |throttleDelayTime|Number|否|节流阈值（ms）|300|
+|sensitiveClasses|Array|否|敏感词类名|[]|
+|sensitiveTags|Array|否|敏感词标签|[]|
 
 ## Usage
 
@@ -56,7 +58,10 @@ heimdallr({
         desc: 'test proj'
     },
     plugins: [
-        domPlugin(),
+        domPlugin({
+            sensitiveClasses: ['.a .b', '.c'],
+            sensitiveTags: ['input']
+        }),
     ]
 });
 ```
