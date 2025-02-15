@@ -1,5 +1,12 @@
 # @heimdallr-sdk/mock-app
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/performance@1.0.0
+
 ## 0.0.6
 
 ### Patch Changes
