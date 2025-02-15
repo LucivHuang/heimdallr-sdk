@@ -198,8 +198,8 @@ importers:
         specifier: workspace:^
         version: link:../../libs/utils
       web-vitals:
-        specifier: ^2.1.4
-        version: 2.1.4
+        specifier: ^4.2.4
+        version: 4.2.4
 
   browser_plugins/record:
     dependencies:
@@ -5240,8 +5240,8 @@ packages:
     resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==, tarball: https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz}
     engines: {node: '>= 8'}
 
-  web-vitals@2.1.4:
-    resolution: {integrity: sha512-sVWcwhU5mX6crfI5Vd2dC4qchyTqxV8URinzt25XqVh+bHEPGH4C3NPrNionCP7Obx59wrYEbNlw4Z8sjALzZg==, tarball: https://registry.npmjs.org/web-vitals/-/web-vitals-2.1.4.tgz}
+  web-vitals@4.2.4:
+    resolution: {integrity: sha512-r4DIlprAGwJ7YM11VZp4R884m0Vmgr6EAKe3P+kO0PPj3Unqyvv59rczf6UiGcb9Z8QxZVcqKNwv/g0WNdWwsw==, tarball: https://registry.npmjs.org/web-vitals/-/web-vitals-4.2.4.tgz}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==, tarball: https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz}
@@ -10555,7 +10555,7 @@ snapshots:
 
   web-streams-polyfill@3.3.3: {}
 
-  web-vitals@2.1.4: {}
+  web-vitals@4.2.4: {}
 
   webidl-conversions@3.0.1: {}
 
