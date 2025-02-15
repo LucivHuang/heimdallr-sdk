@@ -1,5 +1,11 @@
 # @heimdallr-sdk/performance
 
+## 1.0.0
+
+### Major Changes
+
+- refactor: performance
+
 ## 0.0.21
 
 ### Patch Changes

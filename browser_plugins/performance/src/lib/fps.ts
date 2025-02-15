@@ -1,29 +1,31 @@
-import { formatDecimal } from "@heimdallr-sdk/utils";
+import { formatDecimal } from '@heimdallr-sdk/utils';
 
-class FpsTool {
+class FpsTiming {
   private lastTime: number;
   private frame: number;
   private fps: number;
-  private lastFameTime: number;
-  private animationFramId: number;
+  private lastFrameTime: number;
+  private animationFrameId: number;
   constructor() {
-    this.lastFameTime = performance.now();
+    this.lastTime = performance.now();
     this.frame = 0;
     this.fps = 0;
-    this.lastFameTime = performance.now();
+    this.lastFrameTime = performance.now();
   }
   run() {
     const now = performance.now();
-    const fs = now - this.lastFameTime;
-    this.lastFameTime = now;
+    const fs = now - this.lastFrameTime;
+    /** 瞬时 FPS */
     this.fps = Math.round(1000 / fs);
+    this.lastFrameTime = now;
     this.frame++;
     if (now > 1000 + this.lastTime) {
+      /**平均FPS */
       this.fps = Math.round((this.frame * 1000) / (now - this.lastTime));
       this.frame = 0;
       this.lastTime = now;
     }
-    this.animationFramId = window.requestAnimationFrame(() => {
+    this.animationFrameId = window.requestAnimationFrame(() => {
       this.run();
     });
   }
@@ -31,8 +33,18 @@ class FpsTool {
     return formatDecimal(this.fps, 3);
   }
   destroy() {
-    cancelAnimationFrame(this.animationFramId);
+    cancelAnimationFrame(this.animationFrameId);
   }
 }
 
-export default FpsTool;
+const getFPS = () =>
+  new Promise<number>((rs) => {
+    const fpsTool = new FpsTiming();
+    fpsTool.run();
+    setTimeout(() => {
+      rs(fpsTool.get());
+      fpsTool.destroy();
+    }, 1000);
+  });
+
+export default getFPS;

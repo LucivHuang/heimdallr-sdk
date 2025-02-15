@@ -2,43 +2,40 @@
 
 [English](./README_en.md)
 
-> 浏览器性能监控sdk
+> 浏览器性能监控插件
 
-可监控以下指标
+可获取以下指标
 
-- basic
-    - dnsSearch: DNS 解析耗时
-    - tcpConnect: TCP 连接耗时
-    - sslConnect: SSL安全连接耗时
-    - request: TTFB 网络请求耗时
-    - response: 数据传输耗时
-    - parseDomTree: DOM 解析耗时
-    - resource: 资源加载耗时
-    - domReady: DOM Ready
-    - httpHead: http 头部大小
-    - interactive: 首次可交互时间
-    - complete: 页面完全加载
-    - redirect: 重定向次数
-    - redirectTime: 重定向耗时
-    - duration
-    - fp: 渲染出第一个像素点，白屏时间
-    - fcp: 渲染出第一个内容，首屏结束时间
-- fmp
-    - fmp: 有意义内容渲染时间
-- fps
-    - fps: 刷新率
-- vitals
-    - lcp: 最大内容渲染时间，2.5s内
-    - fid: 交互性能，应小于 100ms
-    - cls: 视觉稳定性，应小于 0.1
-- resource
-    - resource: 页面资源加载耗时
+- Network
+  - dns: DNS 解析耗时（毫秒）
+  - tcp: TCP 连接耗时（毫秒）
+  - ssl: SSL 安全连接耗时（毫秒）
+  - ttfb: 首字节时间（Time to First Byte，毫秒）
+  - trans: 数据传输耗时（毫秒）
+  - redirectNum: 重定向次数
+  - redirect: 重定向耗时（毫秒）
+  - headerSize: HTTP 头部大小（字节）
+- PageLoad
+  - domParse: DOM 解析耗时（毫秒）
+  - resLoad: 资源加载耗时（毫秒）
+  - domReady: DOM 准备时间（毫秒）
+  - load: 页面完全加载耗时（毫秒）
+  - duration: 页面加载总耗时（毫秒）
+- Render
+  - fp: 首次绘制时间（First Paint，毫秒）
+  - fcp: 首次内容绘制时间（First Contentful Paint，毫秒）
+  - lcp: 最大内容绘制时间（Largest Contentful Paint，毫秒）
+  - tti: 首次可交互时间（Time to Interactive，毫秒）
+  - inp: 下一次绘制被阻塞时间（Interaction to Next Paint，毫秒）
+  - cls: 累积布局偏移（Cumulative Layout Shift） 
+  - fps: 每秒帧数（Frames Per Second） 
+- Resource: 资源加载明细
 
 ## Options
 
-|配置名称|类型|是否必填|描述|默认值|可选值|
+|名称|类型|必填|描述|默认值|可选值|
 |-|-|-|-|-|-|
-|performancOff|Array|否|关闭 performance 个别功能|[]|basic/fmp/fps/vitals/resource|
+|off|Array|否|停止获取某类型指标|[]|NETWORK（31）、PAGELOAD（32）、RENDER（33）、RESOURCE（34） |
 
 ## Usage
 
@@ -94,8 +91,7 @@ heimdallr({
 
 |值|描述|
 |-|-|
-|31|FMP|
-|32|FPS|
-|33|BASIC|
-|34|VITALS|
-|35|RESOURCE|
+|31|网络延迟相关|
+|32|页面加载相关|
+|33|首屏渲染及交互相关|
+|34|资源加载明细|

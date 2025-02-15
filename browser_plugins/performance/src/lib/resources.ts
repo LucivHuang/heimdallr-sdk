@@ -1,8 +1,10 @@
-import { formatDecimal } from "@heimdallr-sdk/utils";
+import { formatDecimal } from '@heimdallr-sdk/utils';
+import { ResourceItem } from '../types';
 
-export default function () {
-  return performance.getEntriesByType('resource').map((item: PerformanceResourceTiming) => ({
+const getResource = (): ResourceItem[] =>
+  performance.getEntriesByType('resource').map((item: PerformanceResourceTiming) => ({
     f: item.name,
     t: formatDecimal(item.responseEnd, 3)
   }));
-}
+
+export default getResource;

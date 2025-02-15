@@ -1,73 +1,50 @@
-import { BasePluginType, EventTypes, PerTypes, ReportDataType } from '@heimdallr-sdk/types';
-import { PerformanceBasicMsgType, PerformanceFeat, PerformanceOptions, PerformanceSingleMsgType, PerformanceVitalsMsgType } from './types';
-import { generateUUID } from '@heimdallr-sdk/utils';
-import getBasic from './lib/basic';
-import getVitals from './lib/vitals';
-import getResources from './lib/resources';
-import FPSTool from './lib/fps';
-import FMPTiming from './lib/fmp';
-
-type CollectedData = PerformanceSingleMsgType | PerformanceBasicMsgType | PerformanceVitalsMsgType;
+import { BasePluginType, EventTypes, ReportDataType } from "@heimdallr-sdk/types";
+import { generateUUID } from "@heimdallr-sdk/utils";
+import getNetworkMetrics from "./lib/network";
+import getPageLoadMetrics from "./lib/pl";
+import getRenderMetrics from "./lib/render";
+import getResource from "./lib/resources";
+import { PerformanceFeat, PerformanceMsgType, PerformanceOptions } from "./types";
 
 function perPlugin(options: PerformanceOptions = {}): BasePluginType {
-  // 禁用标识
-  const { performancOff = [] } = options;
+  const { off = [] } = options;
   return {
     name: 'perPlugin',
-    monitor(notify: (data: CollectedData) => void) {
-      const fpsTool = new FPSTool();
-      // fmp
-      if (!performancOff.includes(PerformanceFeat.FMP)) {
-        const fmpTiming = new FMPTiming();
-        fmpTiming.initObserver().then((fmp) => {
-          notify({
-            st: PerTypes.FMP,
-            value: fmp
-          });
-        });
-      }
-      // vitals
-      if (!performancOff.includes(PerformanceFeat.VITALS)) {
-        getVitals().then((vitals) => {
-          notify({
-            st: PerTypes.VITALS,
-            ...vitals
-          });
-        });
-      }
+    monitor(notify: (data: PerformanceMsgType) => void) {
       window.addEventListener(
         'load',
         () => {
-          // 基础参数
-          if (!performancOff.includes(PerformanceFeat.BASIC)) {
+          if (!off.includes(PerformanceFeat.NETWORK)) {
             notify({
-              st: PerTypes.BASIC,
-              ...getBasic()
+              st: PerformanceFeat.NETWORK,
+              dat: getNetworkMetrics()
             });
           }
-          // 资源耗时
-          if (!performancOff.includes(PerformanceFeat.RESOURCE)) {
+          if (!off.includes(PerformanceFeat.PAGELOAD)) {
             notify({
-              st: PerTypes.RESOURCE,
-              value: getResources()
+              st: PerformanceFeat.PAGELOAD,
+              dat: getPageLoadMetrics()
             });
           }
-          // fps
-          if (!performancOff.includes(PerformanceFeat.FPS)) {
-            fpsTool.run();
-            setTimeout(() => {
+          if (!off.includes(PerformanceFeat.RENDER)) {
+            getRenderMetrics().then((dat) => {
               notify({
-                st: PerTypes.FPS,
-                value: fpsTool.get()
+                st: PerformanceFeat.RENDER,
+                dat
               });
-              fpsTool.destroy();
-            }, 500);
+            });
+          }
+          if (!off.includes(PerformanceFeat.RESOURCE)) {
+            notify({
+              st: PerformanceFeat.RESOURCE,
+              dat: getResource()
+            });
           }
         },
         true
       );
     },
-    transform(collectedData: CollectedData): ReportDataType<CollectedData> {
+    transform(collectedData: PerformanceMsgType): ReportDataType<PerformanceMsgType> {
       return {
         lid: generateUUID(),
         t: this.getTime(),

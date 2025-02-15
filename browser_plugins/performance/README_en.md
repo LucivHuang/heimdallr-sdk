@@ -4,39 +4,11 @@
 
 The following indicators can be monitored
 
-- basic
-    - dnsSearch: DNS resolution takes time
-    - tcpConnect: TCP connection time
-    - sslConnect: SSL secure connection takes time
-    - request: TTFB network request takes time
-    - response: Data transmission time
-    - parseDomTree: DOM parsing time
-    - resource: Resource loading time
-    - domReady: DOM Ready
-    - httpHead: Http header size
-    - interactive: First interactive time
-    - complete: Page fully loaded
-    - redirect: Redirects
-    - redirectTime: Redirection time
-    - duration
-    - fp: Render the first pixel, blank screen time
-    - fcp: Render the first content, the end time of the first screen
-- fmp
-    - fmp: Rendering time of meaningful content
-- fps
-    - fps: Refresh rate
-- vitals
-    - lcp: Maximum content rendering time
-    - fid: Interactive performance
-    - cls: Visual stability
-- resource
-    - resource: Page resource loading time
-
 ## Options
 
 |Name|Type|Describe|Optional|Default|
 |-|-|-|-|-|
-|performancOff|Array|Turn off individual performance functions|basic/fmp/fps/vitals/resource|[]|
+|off|Array|Turn off individual performance functions|NETWORK（31）、PAGELOAD（32）、RENDER（33）、RESOURCE（34） |[]|
 
 ## Usage
 

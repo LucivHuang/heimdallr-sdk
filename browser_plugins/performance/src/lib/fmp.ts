@@ -1,4 +1,4 @@
-import { formatDecimal } from "@heimdallr-sdk/utils";
+import { formatDecimal } from '@heimdallr-sdk/utils';
 
 const IGNORE_TAG_SET = ['SCRIPT', 'STYLE', 'META', 'HEAD', 'LINK'];
 
@@ -30,7 +30,7 @@ interface ScoreParamType {
   els: ElsType[];
 }
 
-export default class FMPTiming {
+class FMPTiming {
   statusCollector: ElTimeType[];
   flag: boolean;
   observer: MutationObserver;
@@ -54,8 +54,8 @@ export default class FMPTiming {
     this.WH = window.innerHeight;
   }
 
-  initObserver(): Promise<number> {
-    return new Promise((rs) => {
+  initObserver() {
+    return new Promise<number>((rs) => {
       this.observer = new MutationObserver(() => {
         const t = Date.now() - this.startTime;
         const bodyTarget = document.body;
@@ -75,15 +75,15 @@ export default class FMPTiming {
 
       if (document.readyState === 'complete') {
         this.calFinallScore().then((res) => rs(res));
-      } else {
-        window.addEventListener(
-          'load',
-          () => {
-            this.calFinallScore().then((res) => rs(res));
-          },
-          true
-        );
+        return;
       }
+      window.addEventListener(
+        'load',
+        () => {
+          this.calFinallScore().then((res) => rs(res));
+        },
+        true
+      );
     });
   }
 
@@ -98,10 +98,9 @@ export default class FMPTiming {
     if (window.getComputedStyle) {
       //优先使用W3C规范
       return window.getComputedStyle(element)[att];
-    } else {
-      //针对IE9以下兼容
-      return (element as any).currentStyle[att];
     }
+    //针对IE9以下兼容
+    return (element as any).currentStyle[att];
   }
 
   private initResourceMap() {
@@ -345,3 +344,13 @@ export default class FMPTiming {
     return (overlapX * overlapY) / (width * height);
   }
 }
+
+const getFMP = () =>
+  new Promise<number>((rs) => {
+    const fmpTiming = new FMPTiming();
+    fmpTiming.initObserver().then((fmp) => {
+      rs(fmp);
+    });
+  });
+
+export default getFMP;
