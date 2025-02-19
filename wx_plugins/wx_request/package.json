@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/wx-request",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A Plugin For Wechat SDK",
   "license": "MIT",
   "author": "LuciferHuang",

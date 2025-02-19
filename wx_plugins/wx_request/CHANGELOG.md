@@ -1,5 +1,14 @@
 # @heimdallr-sdk/wx-request
 
+## 0.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/types@0.0.18
+  - @heimdallr-sdk/wx@0.0.15
+  - @heimdallr-sdk/utils@0.0.23
+
 ## 0.0.10
 
 ### Patch Changes
