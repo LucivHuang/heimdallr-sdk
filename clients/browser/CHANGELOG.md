@@ -1,5 +1,16 @@
 # @heimdallr-sdk/browser
 
+## 0.0.37
+
+### Patch Changes
+
+- perf: update subTypes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/types@0.0.18
+  - @heimdallr-sdk/core@0.0.28
+  - @heimdallr-sdk/utils@0.0.23
+
 ## 0.0.36
 
 ### Patch Changes

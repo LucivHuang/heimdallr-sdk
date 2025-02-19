@@ -63,3 +63,9 @@ export interface CodeErrorDataType {
 export interface CodeErrorType extends ReportDataMsgType, CodeErrorDataType {}
 
 export interface BrowserOptionsType extends BaseOptionsType, LifecycleOptions, CodeErrorOptions {}
+
+export enum BrowserErrorTypes {
+  CODEERROR = 21,
+  RESOURCEERROR,
+  UNHANDLEDREJECTION,
+}

@@ -1,7 +1,6 @@
-import { setStore } from './../../../libs/utils/src/browser';
 import { Core, Breadcrumb } from '@heimdallr-sdk/core';
 import { IAnyObject, PlatformTypes, BrowserReportType, PageLifeType, ClientInfoType, StoreKeyType, StoreType } from '@heimdallr-sdk/types';
-import { generateUUID, beacon, get, imgRequest, post, getCookie, setCookie, getStore, obj2query } from '@heimdallr-sdk/utils';
+import { generateUUID, beacon, get, imgRequest, post, getCookie, setCookie, getStore, obj2query, setStore } from '@heimdallr-sdk/utils';
 import { BrowserOptionsType, BrowserReportPayloadDataType } from './types';
 import { nextTick } from './libs/nextTick';
 // 基础插件

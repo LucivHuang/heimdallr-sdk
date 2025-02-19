@@ -1,5 +1,14 @@
 # @heimdallr-sdk/node
 
+## 0.0.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/types@0.0.18
+  - @heimdallr-sdk/core@0.0.28
+  - @heimdallr-sdk/utils@0.0.23
+
 ## 0.0.17
 
 ### Patch Changes

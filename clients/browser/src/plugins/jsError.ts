@@ -1,7 +1,6 @@
 import { parseStackFrames } from '../libs/parseErrorStk';
 import {
   BasePluginType,
-  BrowserErrorTypes,
   EventTypes,
   ReportDataType,
   BrowserBreadcrumbTypes,
@@ -11,7 +10,7 @@ import {
   TAG
 } from '@heimdallr-sdk/types';
 import { generateUUID, getStore, setStore } from '@heimdallr-sdk/utils';
-import { CodeErrorOptions, CodeErrorType, ResourceErrorType } from '../types';
+import { BrowserErrorTypes, CodeErrorOptions, CodeErrorType, ResourceErrorType } from '../types';
 
 const ERROR_CACHE = 'HEIMDALLR_SDK_ERROR_CACHE';
 
