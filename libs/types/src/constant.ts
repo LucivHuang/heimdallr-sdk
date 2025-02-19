@@ -25,22 +25,11 @@ export enum EventTypes {
   EXTEND,
 }
 
-export enum BrowserErrorTypes {
-  CODEERROR = 21,
-  RESOURCEERROR,
-  UNHANDLEDREJECTION,
-  PAGECRASH
-}
-
 export enum BrowserReportType {
   BEACON = 1,
   IMG,
   GET,
   POST
-}
-
-export enum DomTypes {
-  CLICK = 51
 }
 
 export enum ConsoleTypes {
@@ -56,24 +45,12 @@ export enum HttpTypes {
   FETCH,
 }
 
-export enum PerTypes {
-  FMP = 31,
-  FPS,
-  BASIC,
-  VITALS,
-  RESOURCE
-}
-
 export enum RouteTypes {
   HASH = 61,
   HISTORY
 }
 
-export enum CustomerTypes {
-  CUSTOMER = 111
-}
-
-export type BrowserSubTypes = PageLifeType | BrowserErrorTypes | DomTypes | HttpTypes | ConsoleTypes | PerTypes | RouteTypes | CustomerTypes;
+export type BrowserSubTypes = PageLifeType | HttpTypes | ConsoleTypes | RouteTypes;
 
 export type StoreTypes = 'local' | 'session' | 'cookie' | 'global';
 

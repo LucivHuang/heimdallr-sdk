@@ -1,10 +1,18 @@
 # @heimdallr-sdk/utils
 
+## 0.0.23
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/types@0.0.18
+
 ## 0.0.22
 
 ### Patch Changes
 
-- feat: post支持string类型参数
+- feat: post 支持 string 类型参数
+
 ## 0.0.21
 
 ### Patch Changes
