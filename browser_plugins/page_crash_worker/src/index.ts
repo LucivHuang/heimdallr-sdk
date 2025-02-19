@@ -1,6 +1,6 @@
-import { BrowserBreadcrumbTypes, BrowserErrorTypes, EventTypes, BreadcrumbLevel } from '@heimdallr-sdk/types';
+import { BrowserBreadcrumbTypes, EventTypes, BreadcrumbLevel } from '@heimdallr-sdk/types';
 import { get } from '@heimdallr-sdk/utils';
-import { CrashErrorType } from './types';
+import { CrashErrorType, ReportSubTypes } from './types';
 
 // 运行在 webWorker
 
@@ -69,7 +69,7 @@ class PageCrashWorker {
           b,
           ...clientInfo,
           dat: {
-            st: BrowserErrorTypes.PAGECRASH,
+            st: ReportSubTypes.PAGECRASH,
             href
           }
         });

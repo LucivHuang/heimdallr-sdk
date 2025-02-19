@@ -5,3 +5,7 @@ export interface CrashErrorType extends ReportDataMsgType, LinkMsgDataType {
   stack: BreadcrumbPushData[];
   clientInfo: ClientInfoType;
 }
+
+export enum ReportSubTypes {
+  PAGECRASH = 24
+}

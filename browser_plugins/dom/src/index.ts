@@ -1,6 +1,6 @@
-import { BasePluginType, BrowserBreadcrumbTypes, DomTypes, EventTypes, ReportDataType } from '@heimdallr-sdk/types';
+import { BasePluginType, BrowserBreadcrumbTypes, EventTypes, ReportDataType } from '@heimdallr-sdk/types';
 import { generateUUID, throttle } from '@heimdallr-sdk/utils';
-import { DomMsgType, DomOptions } from './types';
+import { DomMsgType, DomOptions, DomTypes } from './types';
 import { htmlElementAsString } from './lib';
 
 export interface DomCollectedType {

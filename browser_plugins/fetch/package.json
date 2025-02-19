@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/fetch",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "A Plugin For Browser SDK",
   "license": "MIT",
   "author": "LuciferHuang",

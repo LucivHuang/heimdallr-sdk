@@ -1,5 +1,13 @@
 # @heimdallr-sdk/page-crash
 
+## 0.0.22
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/types@0.0.18
+  - @heimdallr-sdk/utils@0.0.23
+
 ## 0.0.21
 
 ### Patch Changes

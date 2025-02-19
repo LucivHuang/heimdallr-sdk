@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/dom",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "A Plugin For Browser SDK",
   "license": "MIT",
   "author": "LuciferHuang",

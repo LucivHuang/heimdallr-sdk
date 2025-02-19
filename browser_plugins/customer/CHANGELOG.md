@@ -1,5 +1,15 @@
 # @heimdallr-sdk/customer
 
+## 0.0.22
+
+### Patch Changes
+
+- perf: update subTypes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/types@0.0.18
+  - @heimdallr-sdk/utils@0.0.23
+
 ## 0.0.21
 
 ### Patch Changes

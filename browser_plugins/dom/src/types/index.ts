@@ -1,5 +1,9 @@
 import { ReportDataMsgType } from '@heimdallr-sdk/types';
 
+export enum DomTypes {
+  CLICK = 51
+}
+
 export interface DomDataMsgType {
   ele: string;
   x: number;

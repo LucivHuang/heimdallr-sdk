@@ -1,5 +1,15 @@
 # @heimdallr-sdk/page-crash-worker
 
+## 0.0.23
+
+### Patch Changes
+
+- perf: update subTypes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/types@0.0.18
+  - @heimdallr-sdk/utils@0.0.23
+
 ## 0.0.22
 
 ### Patch Changes

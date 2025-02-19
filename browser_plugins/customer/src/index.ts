@@ -2,17 +2,13 @@ import {
   BasePluginType,
   BrowserBreadcrumbTypes,
   CustomerOptionType,
-  CustomerTypes,
   EventTypes,
   IAnyMsgType,
   ReportDataType,
   StoreType
 } from '@heimdallr-sdk/types';
 import { generateUUID, getCookie, getStore, getDeepPropByDot } from '@heimdallr-sdk/utils';
-
-export interface CustomerOptions {
-  customers?: CustomerOptionType[];
-}
+import { CustomerOptions, CustomerTypes } from './types';
 
 function customerPlugin(options: CustomerOptions = {}): BasePluginType {
   const { customers = [] } = options;
