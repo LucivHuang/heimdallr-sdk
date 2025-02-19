@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/vite-plugin-sourcemap-upload",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Plugin For Vite Upload Sourcemap Files",
   "license": "MIT",
   "author": "LuciferHuang",
