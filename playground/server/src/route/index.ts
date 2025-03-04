@@ -1,6 +1,6 @@
 import express from 'express';
 import { resolve } from 'path';
-import { init as projInit, list as projList } from '../controller/projCtrl';
+import { initGet as projInitGet, initPost as projInitPost, list as projList } from '../controller/projCtrl';
 import { uploadPost as logPostUpload, uploadGet as logGetUpload, list as logList, detail as logDetail } from '../controller/logCtrl';
 import { upload as smUpload, search as smSearch } from '../controller/sourcemapCtrl';
 import { statisticTotalGet, statisticProjGet } from '../controller/statisticCtrl';
@@ -10,7 +10,8 @@ const resolveDirname = (target: string) => resolve(__dirname, target);
 
 const router = express.Router(); // 创建路由对象
 
-router.get('/project/init', projInit);
+router.post('/project/init', projInitPost);
+router.get('/project/init', projInitGet);
 router.get('/project/list', projList);
 
 router.get('/statistic/total', statisticTotalGet);

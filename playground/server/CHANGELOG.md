@@ -1,5 +1,11 @@
 # @heimdallr-sdk/server
 
+## 0.0.20
+
+### Patch Changes
+
+- feat: initApp add post method
+
 ## 0.0.19
 
 ### Patch Changes
