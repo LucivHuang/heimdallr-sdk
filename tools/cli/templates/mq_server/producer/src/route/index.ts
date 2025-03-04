@@ -1,6 +1,6 @@
 import express from 'express';
 import { resolve } from 'path';
-import { init as projInit } from '../controller/projCtrl';
+import { initGet as projInitGet, initPost as projInitPost } from '../controller/projCtrl';
 import { uploadPost as logPostUpload, uploadGet as logGetUpload } from '../controller/logCtrl';
 import { upload as smUpload } from '../controller/sourcemapCtrl';
 
@@ -8,7 +8,8 @@ const resolveDirname = (target: string) => resolve(__dirname, target);
 
 const router = express.Router(); // 创建路由对象
 
-router.get('/project/init', projInit);
+router.post('/project/init', projInitPost);
+router.get('/project/init', projInitGet);
 
 router.post('/log/report', logPostUpload);
 router.get('/log/report', logGetUpload);

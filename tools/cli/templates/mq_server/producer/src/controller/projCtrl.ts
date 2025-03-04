@@ -4,8 +4,17 @@ import Rabbit from '../lib/rabbitMQ';
 
 const mq = new Rabbit('<%= rabbit_host %>');
 
-export async function init(req, res) {
-  const appInfo = { ...req.query };
+export function initPost(req, res) {
+  const param = (req as any).fields;
+  init(res, param);
+}
+
+export function initGet(req, res) {
+  const param = (req as any).query;
+  init(res, param);
+}
+
+export async function init(res, appInfo) {
   const { name } = appInfo;
   if (!name) {
     res.send(failResponse('missing name'));
