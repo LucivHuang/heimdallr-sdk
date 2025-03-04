@@ -1,5 +1,11 @@
 # @heimdallr-sdk/wx
 
+## 0.0.16
+
+### Patch Changes
+
+- fix: failed to report after onHide
+
 ## 0.0.15
 
 ### Patch Changes

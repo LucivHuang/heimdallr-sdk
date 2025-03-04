@@ -6,15 +6,19 @@ import { WxContextType, WxOptionsType, WxSettingType, WxTrackTypes } from './typ
 import { getStorageSync } from './libs';
 import errorPlugin from './plugins/onerror';
 
+const EVENT_LOG_STORE_KEY = 'heimdallr-event-log';
+
 export class WxClient extends Core<WxOptionsType> {
   private wxContext: WxContextType;
   private wxSettings: WxSettingType;
   private diff: number;
+  private requestTasks: Map<WechatMiniprogram.RequestTask, IAnyObject>;
   public readonly breadcrumb: Breadcrumb<WxOptionsType>;
   constructor(options: WxOptionsType) {
     super(options);
     this.diff = 0;
     this.wxContext = {};
+    this.requestTasks = new Map();
     this.breadcrumb = new Breadcrumb(options);
   }
 
@@ -45,13 +49,37 @@ export class WxClient extends Core<WxOptionsType> {
     return id;
   }
 
-  getWxSettings() {
-    return Promise.all([(wx as any).getRendererUserAgent(), wx.getSystemInfo()]).then(([userAgent, info]) => {
-      this.wxSettings = {
-        ua: userAgent,
-        lan: info.language
-      };
-    });
+  async getWxSettings() {
+    const { bluetoothEnabled: btEn, locationEnabled: locEn } = wx.getSystemSetting();
+    const { brand, model, system } = wx.getDeviceInfo();
+    const { windowWidth: width, windowHeight: height } = wx.getWindowInfo();
+    const { SDKVersion: sdk, language: lan, version } = wx.getAppBaseInfo();
+    const {
+      cameraAuthorized: camAuth,
+      locationAuthorized: locAuth,
+      microphoneAuthorized: micAuth,
+      notificationAuthorized: notifyAuth,
+      phoneCalendarAuthorized: calAuth
+    } = wx.getAppAuthorizeSetting();
+    const ua = await wx.getRendererUserAgent();
+    this.wxSettings = {
+      btEn,
+      locEn,
+      brand,
+      model,
+      system,
+      width,
+      height,
+      sdk,
+      lan,
+      version,
+      ua,
+      camAuth,
+      locAuth,
+      micAuth,
+      notifyAuth,
+      calAuth
+    };
   }
 
   isRightEnv() {
@@ -61,7 +89,7 @@ export class WxClient extends Core<WxOptionsType> {
   report(url: string, data: IAnyObject): Promise<WechatMiniprogram.GeneralCallbackResult> {
     const { reqOption = {} } = this.getClientOptions();
     return new Promise((rs, rj) => {
-      wx.request({
+      const task = wx.request({
         success: (result) => {
           rs(result);
         },
@@ -70,23 +98,36 @@ export class WxClient extends Core<WxOptionsType> {
         method: 'POST',
         ...reqOption,
         data,
-        dataType: 'json'
+        dataType: 'json',
+        complete: () => {
+          this.requestTasks.delete(task);
+        }
       });
+      this.requestTasks.set(task, data);
     });
   }
 
-  transform(datas: IAnyObject): IAnyObject {
-    if (!datas) {
+  transform(data: IAnyObject): IAnyObject {
+    if (!data) {
       return null;
     }
+    const {
+      dat: { st }
+    } = data;
     const preDatas = this.getWxContext();
-    return {
+    let reportData = {
       t: this.getTime(),
       p: PlatformTypes.WECHAT,
       ...preDatas,
-      ...this.wxSettings,
-      ...datas
+      ...data
     };
+    if (st === PageLifeType.LOAD) {
+      reportData = {
+        ...reportData,
+        ...this.wxSettings
+      };
+    }
+    return reportData;
   }
 
   nextTick(cb: Function, ctx: Object, ...args: any[]) {
@@ -124,8 +165,62 @@ export class WxClient extends Core<WxOptionsType> {
     this.nextTick(this.report, this, uploadUrl, { app_id: this.appID, ...datas });
   }
 
-  cusOnShow() {
+  handleOnShow(route: string) {
+    const last = wx.getStorageSync(EVENT_LOG_STORE_KEY);
+    if (last) {
+      last.forEach((task: IAnyObject) => {
+        this.lifecycleReport(task);
+      });
+    }
     const { userStoreKey } = this.getClientOptions();
+    const sessionId = generateUUID();
+    const userInfo = getStorageSync(userStoreKey);
+    this.setWxContext({ sid: sessionId, ui: userInfo, url: route });
+    const lid = generateUUID();
+    const datas = this.transform({
+      lid,
+      e: EventTypes.LIFECYCLE,
+      dat: {
+        st: PageLifeType.LOAD,
+        href: route
+      }
+    });
+    this.breadcrumb.unshift({
+      lid,
+      bt: WxBreadcrumbTypes.LIFECYCLE,
+      msg: `Enter "${route}"`,
+      t: this.getTime()
+    });
+    this.lifecycleReport(datas);
+  }
+
+  handleOnHide(route: string) {
+    if (this.requestTasks.size) {
+      this.requestTasks.forEach((_, req) => {
+        req.abort();
+      });
+      wx.setStorage({ key: EVENT_LOG_STORE_KEY, data: this.requestTasks });
+    }
+    const lid = generateUUID();
+    const datas = this.transform({
+      lid,
+      e: EventTypes.LIFECYCLE,
+      dat: {
+        st: PageLifeType.UNLOAD,
+        href: route
+      }
+    });
+    this.breadcrumb.unshift({
+      lid,
+      bt: WxBreadcrumbTypes.LIFECYCLE,
+      msg: `Leave "${route}"`,
+      t: this.getTime()
+    });
+    this.lifecycleReport(datas);
+    this.clearWxContext();
+  }
+
+  cusOnShow() {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const client = this;
     return (original: (query: Record<string, string>) => void | Promise<void>): ((e: any) => void) => {
@@ -133,28 +228,11 @@ export class WxClient extends Core<WxOptionsType> {
         if (original) {
           original.apply(this, e);
         }
-        const sessionId = generateUUID();
-        const userInfo = getStorageSync(userStoreKey);
-        client.setWxContext({ sid: sessionId, ui: userInfo, url: this.route });
-        const lid = generateUUID();
-        const datas = client.transform({
-          lid,
-          e: EventTypes.LIFECYCLE,
-          dat: {
-            st: PageLifeType.LOAD,
-            href: this.route
-          }
-        });
-        client.breadcrumb.unshift({
-          lid,
-          bt: WxBreadcrumbTypes.LIFECYCLE,
-          msg: `Enter "${this.route}"`,
-          t: client.getTime()
-        });
-        client.lifecycleReport.call(client, datas);
+        client.handleOnShow(this.route);
       };
     };
   }
+  
   cusOnHide() {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const client = this;
@@ -163,23 +241,7 @@ export class WxClient extends Core<WxOptionsType> {
         if (original) {
           original.apply(this);
         }
-        const lid = generateUUID();
-        const datas = client.transform({
-          lid,
-          e: EventTypes.LIFECYCLE,
-          dat: {
-            st: PageLifeType.UNLOAD,
-            href: this.route
-          }
-        });
-        client.breadcrumb.unshift({
-          lid,
-          bt: WxBreadcrumbTypes.LIFECYCLE,
-          msg: `Leave "${this.route}"`,
-          t: client.getTime()
-        });
-        client.lifecycleReport.call(client, datas);
-        client.clearWxContext();
+        client.handleOnHide(this.route);
       };
     };
   }
@@ -200,52 +262,14 @@ const init = (options: WxOptionsType) => {
     },
     // 手动在页面 onShow/onHide 添加埋点
     track: (type: WxTrackTypes, path: string) => {
-      const { userStoreKey } = client.getClientOptions();
-      const lid = generateUUID();
       switch (type) {
         case 'show':
-          {
-            // 页面显示
-            const sessionId = generateUUID();
-            const userInfo = getStorageSync(userStoreKey);
-            client.setWxContext({ sid: sessionId, ui: userInfo, url: path });
-            const datas = client.transform({
-              lid,
-              e: EventTypes.LIFECYCLE,
-              dat: {
-                st: PageLifeType.LOAD,
-                href: path
-              }
-            });
-            client.breadcrumb.unshift({
-              lid,
-              bt: WxBreadcrumbTypes.LIFECYCLE,
-              msg: `Enter "${path}"`,
-              t: client.getTime()
-            });
-            client.lifecycleReport.call(client, datas);
-          }
+          // 页面显示
+          client.handleOnShow(path);
           break;
         case 'hide':
-          {
-            // 页面隐藏
-            const datas = client.transform({
-              lid,
-              e: EventTypes.LIFECYCLE,
-              dat: {
-                st: PageLifeType.UNLOAD,
-                href: path
-              }
-            });
-            client.breadcrumb.unshift({
-              lid,
-              bt: WxBreadcrumbTypes.LIFECYCLE,
-              msg: `Leave "${path}"`,
-              t: client.getTime()
-            });
-            client.lifecycleReport.call(client, datas);
-            client.clearWxContext();
-          }
+          // 页面隐藏
+          client.handleOnHide(path);
           break;
 
         default:
