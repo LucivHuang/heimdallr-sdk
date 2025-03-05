@@ -14,19 +14,17 @@ export const formateUrlPath = (host: string, path: string): string =>
 /**
  * 获取 URL 路径地址
  * @param {string} url - 完整的 URL 地址
- * @return {string} 返回路径部分
+ * @return {string} 返回标准化路径
  */
  export const getUrlPath = (url: string): string => {
-   const hasProtocol = /^[a-zA-Z]+:\/\//.test(url);
-  try {
-    // 使用 URL 对象解析
-    const { pathname } = new URL(url, hasProtocol ? undefined : 'http://temporaryurl.com');
-    // 确保路径不包含尾部斜杠
-    return pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
-  } catch (error) {
-    // 处理无效 URL 的情况
-    return '';
+  if (!url) return '';
+  if (!/^[a-zA-Z]+:\/\//.test(url)) {
+    url = url.startsWith('/') ? `http://dummyhost${url}` : `http://${url}`;
   }
+  const match = url.match(/^[a-zA-Z]+:\/\/(?:[^/?#]*@)?([^/?#]*)(\/[^?#]*)?/);
+  let path = match?.[2] || '';
+  if (path.endsWith('/') && path.length > 1) path = path.slice(0, -1);
+  return path || '/';
 };
 
 /**

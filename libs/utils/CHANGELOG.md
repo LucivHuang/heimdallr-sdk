@@ -1,5 +1,11 @@
 # @heimdallr-sdk/utils
 
+## 0.0.24
+
+### Patch Changes
+
+- fix: miniprogram getUrlPath failed
+
 ## 0.0.23
 
 ### Patch Changes
