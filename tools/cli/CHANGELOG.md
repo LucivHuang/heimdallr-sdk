@@ -1,5 +1,11 @@
 # @heimdallr-sdk/cli
 
+## 0.0.31
+
+### Patch Changes
+
+- fix: miniprogram report failed
+
 ## 0.0.30
 
 ### Patch Changes

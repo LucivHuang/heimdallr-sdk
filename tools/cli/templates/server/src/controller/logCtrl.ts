@@ -60,6 +60,10 @@ async function uploadCtrl(res, param, ipInfo: IPInfo) {
     res.send(failResponse('missing lid or aid'));
     return;
   }
+  // 兼容不同上报方式
+  const logType = `${e}`;
+  const platform = `${p}`;
+
   const otime = new Date(+t);
   try {
     // 将入参转为数据库存储结构
@@ -79,7 +83,7 @@ async function uploadCtrl(res, param, ipInfo: IPInfo) {
       province: region,
       path: url,
       page_title: ttl,
-      platform: p,
+      platform,
       stay_time: 0,
       terminal: `${isMobileDevice(ua) ? DeviceType.MOBILE : DeviceType.PC}`,
       language: lan,
@@ -100,13 +104,13 @@ async function uploadCtrl(res, param, ipInfo: IPInfo) {
       // session 不存在，新建
       const addSessionRes = await sessionModel.add([newSession]);
       if (!addSessionRes.status) {
-        res(failResponse(addSessionRes.msg));
+        res.send(failResponse(addSessionRes.msg));
         return;
       }
     }
-    if ([`${EventTypes.LIFECYCLE}`, `${EventTypes.RECORD}`].includes(e)) {
-      let response = { status: false, msg: 'st not found' };
-      switch (st) {
+    if ([`${EventTypes.LIFECYCLE}`, `${EventTypes.RECORD}`].includes(logType)) {
+      let response = { status: false, msg: 'success' };
+      switch (parseInt(st)) {
         case PageLifeType.LOAD:
           if (targetSession) {
             // 已存在，更新一下
@@ -179,6 +183,7 @@ async function uploadCtrl(res, param, ipInfo: IPInfo) {
           break;
 
         default:
+          response.msg = 'st not found';
           break;
       }
       const { status, msg } = response;
@@ -186,7 +191,7 @@ async function uploadCtrl(res, param, ipInfo: IPInfo) {
         console.error(TAG, msg);
       }
       res.send(successResponse(null, msg));
-      // 页面生命周期时间不加log
+      // 页面生命周期时间不加logs
       return;
     }
 
@@ -194,10 +199,10 @@ async function uploadCtrl(res, param, ipInfo: IPInfo) {
       ascription_id: aid,
       session_id: sid,
       otime,
-      type: e,
-      sub_type: st,
+      type: logType,
+      sub_type: `${st}`,
       data: JSON.stringify(paramObj),
-      platform: p,
+      platform,
       path: url
     };
     const { data: count } = await logModel.count({ id: lid });
