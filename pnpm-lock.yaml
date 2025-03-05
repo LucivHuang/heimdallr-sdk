@@ -35,9 +35,6 @@ importers:
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@2.79.1)
-      '@types/wechat-miniprogram':
-        specifier: ^3.4.1
-        version: 3.4.7
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.30.7
         version: 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5)
@@ -1614,9 +1611,6 @@ packages:
 
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==, tarball: https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.20.tgz}
-
-  '@types/wechat-miniprogram@3.4.7':
-    resolution: {integrity: sha512-X6SVOOaTPQN24lYBSV5jLuWyIedx8DGJnT0VUBnoNzJruhxotCL28ecGb7AO5JfXOXtHqSS5+CnJ70NxFxmisA==, tarball: https://registry.npmjs.org/@types/wechat-miniprogram/-/wechat-miniprogram-3.4.7.tgz}
 
   '@typescript-eslint/eslint-plugin@5.62.0':
     resolution: {integrity: sha512-TiZzBSJja/LbhNPvk6yc0JrX9XqhQ0hdh6M2svYfsHGejaKFIAGd9MQ+ERIMzLGlN/kZoYIgdxFV0PuljTKXag==, tarball: https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.62.0.tgz}
@@ -6469,8 +6463,6 @@ snapshots:
   '@types/web-bluetooth@0.0.16': {}
 
   '@types/web-bluetooth@0.0.20': {}
-
-  '@types/wechat-miniprogram@3.4.7': {}
 
   '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@4.9.5))(eslint@8.57.0)(typescript@4.9.5)':
     dependencies:
