@@ -1,5 +1,15 @@
 # @heimdallr-sdk/wx-request
 
+## 0.0.13
+
+### Patch Changes
+
+- chore: update tsconfig
+
+- Updated dependencies []:
+  - @heimdallr-sdk/utils@0.0.24
+  - @heimdallr-sdk/wx@0.0.17
+
 ## 0.0.12
 
 ### Patch Changes

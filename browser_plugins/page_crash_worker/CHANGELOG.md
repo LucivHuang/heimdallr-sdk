@@ -1,5 +1,12 @@
 # @heimdallr-sdk/page-crash-worker
 
+## 0.0.24
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/utils@0.0.24
+
 ## 0.0.23
 
 ### Patch Changes

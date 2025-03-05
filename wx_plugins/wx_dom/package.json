@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/wx-dom",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A Plugin For Wechat SDK",
   "license": "MIT",
   "author": "LuciferHuang",

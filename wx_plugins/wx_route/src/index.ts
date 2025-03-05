@@ -13,7 +13,11 @@ function wxRoutePlugin(): BasePluginType {
         WxRouteEvents.REDIRECT_TO,
         WxRouteEvents.NAVIGATE_TO,
         WxRouteEvents.NAVIGATE_BACK,
-        WxRouteEvents.NAVIGATE_TO_MINI_PROGRAM
+        WxRouteEvents.NAVIGATE_TO_MINI_PROGRAM,
+        WxRouteEvents.NAVIGATE_BACK_MINI_PROGRAM,
+        WxRouteEvents.OPEN_EMBEDDED_MINI_PROGRAM,
+        WxRouteEvents.OPEN_PROFILE,
+        WxRouteEvents.OPEN_ARTICLE,
       ].forEach((method) => {
         const originMethod = wx[method] as Function;
         Object.defineProperty(wx, method, {
@@ -28,6 +32,9 @@ function wxRoutePlugin(): BasePluginType {
               | WechatMiniprogram.NavigateToOption
               | WechatMiniprogram.NavigateBackOption
               | WechatMiniprogram.NavigateToMiniProgramOption
+              | WechatMiniprogram.NavigateBackMiniProgramOption
+              | WechatMiniprogram.OpenEmbeddedMiniProgramOption
+              | WechatMiniprogram.OpenOfficialAccountArticleOption
           ) {
             let toUrl = '';
             if (method === WxRouteEvents.NAVIGATE_BACK) {
@@ -48,7 +55,12 @@ function wxRoutePlugin(): BasePluginType {
                 | WechatMiniprogram.ReLaunchFailCallback
                 | WechatMiniprogram.RedirectToFailCallback
                 | WechatMiniprogram.NavigateToFailCallback
-                | WechatMiniprogram.NavigateBackFailCallback = function (res) {
+                | WechatMiniprogram.NavigateBackFailCallback
+                | WechatMiniprogram.NavigateToMiniProgramFailCallback
+                | WechatMiniprogram.NavigateBackMiniProgramFailCallback
+                | WechatMiniprogram.OpenEmbeddedMiniProgramFailCallback
+                | WechatMiniprogram.OpenOfficialAccountArticleFailCallback
+                 = function (res) {
                 notify({
                   ...data,
                   fail: true,
@@ -75,15 +87,14 @@ function wxRoutePlugin(): BasePluginType {
         msg: `from "${from}" to "${to}" by "${wt}"`,
         t: this.getTime()
       });
-      const { wt: st } = collectedData;
       delete collectedData.wt;
       return {
         lid,
         t: this.getTime(),
         e: EventTypes.ROUTE,
         dat: {
-          st,
-          ...collectedData
+          ...collectedData,
+          st: wt || 'unknown',
         }
       };
     }

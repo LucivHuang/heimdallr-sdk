@@ -1,5 +1,12 @@
 # @heimdallr-sdk/record
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/utils@0.0.24
+
 ## 0.0.8
 
 ### Patch Changes

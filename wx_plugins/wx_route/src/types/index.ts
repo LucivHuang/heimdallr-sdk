@@ -7,6 +7,10 @@ export enum WxRouteEvents {
   NAVIGATE_TO = 'navigateTo',
   NAVIGATE_BACK = 'navigateBack',
   NAVIGATE_TO_MINI_PROGRAM = 'navigateToMiniProgram',
+  NAVIGATE_BACK_MINI_PROGRAM = 'navigateBackMiniProgram',
+  OPEN_EMBEDDED_MINI_PROGRAM = 'openEmbeddedMiniProgram',
+  OPEN_PROFILE = 'openOfficialAccountProfile',
+  OPEN_ARTICLE = 'openOfficialAccountArticle',
   ROUTE_FAIL = 'routeFail'
 }
 

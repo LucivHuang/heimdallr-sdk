@@ -1,5 +1,12 @@
 # @heimdallr-sdk/xhr
 
+## 0.0.22
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/utils@0.0.24
+
 ## 0.0.21
 
 ### Patch Changes

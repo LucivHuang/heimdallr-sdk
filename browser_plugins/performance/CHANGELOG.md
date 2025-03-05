@@ -1,5 +1,12 @@
 # @heimdallr-sdk/performance
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/utils@0.0.24
+
 ## 1.0.1
 
 ### Patch Changes

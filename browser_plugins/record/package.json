@@ -1,6 +1,6 @@
 {
   "name": "@heimdallr-sdk/record",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A Plugin For Browser SDK",
   "license": "MIT",
   "author": "LuciferHuang",

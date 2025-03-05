@@ -1,5 +1,12 @@
 # @heimdallr-sdk/vue
 
+## 0.0.25
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @heimdallr-sdk/utils@0.0.24
+
 ## 0.0.24
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @heimdallr-sdk/wx-route
 
+## 0.0.10
+
+### Patch Changes
+
+- chore: update tsconfig
+
+- Updated dependencies []:
+  - @heimdallr-sdk/utils@0.0.24
+
 ## 0.0.9
 
 ### Patch Changes

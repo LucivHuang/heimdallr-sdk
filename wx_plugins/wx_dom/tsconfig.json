@@ -3,8 +3,11 @@
   "compilerOptions": {
     "module": "es6",
     "outDir": "esm",
-    "types": ["wechat-miniprogram"],
-    "lib": ["es2017", "es6"]
+    "lib": ["es2017", "es6"],
+    "typeRoots": [
+      "../../node_modules"
+    ],
+    "types": ["miniprogram-api-typings"]
   },
   "include": ["src/**/*"]
 }
