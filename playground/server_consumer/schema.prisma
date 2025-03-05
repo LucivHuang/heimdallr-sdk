@@ -42,7 +42,7 @@ model Log {
     ctime         DateTime @default(now()) @updatedAt
     otime         DateTime
     type          String
-    sub_type      Int
+    sub_type      String
     session_id    String
     ascription_id String
     data          String   @db.LongText

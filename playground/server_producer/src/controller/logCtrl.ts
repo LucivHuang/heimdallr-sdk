@@ -31,9 +31,9 @@ export function uploadGet(req, res) {
  * @param param 请求参数
  */
 async function uploadCtrl(res, param, ipInfo: IPInfo) {
-  const { app_id, id } = param;
-  if (!id || !app_id) {
-    res.send(failResponse('missing id or app_id'));
+  const { aid, lid } = param;
+  if (!lid || !aid) {
+    res.send(failResponse('missing lid or aid'));
     return;
   }
   // 入列

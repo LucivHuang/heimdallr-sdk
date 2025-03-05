@@ -1,5 +1,11 @@
 # @heimdallr-sdk/server
 
+## 0.0.21
+
+### Patch Changes
+
+- fix: miniprogram report failed
+
 ## 0.0.20
 
 ### Patch Changes
