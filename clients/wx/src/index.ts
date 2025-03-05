@@ -111,16 +111,16 @@ export class WxClient extends Core<WxOptionsType> {
     if (!data) {
       return null;
     }
-    const {
-      dat: { st }
-    } = data;
+    const { dat } = data;
     const preDatas = this.getWxContext();
     let reportData = {
       t: this.getTime(),
       p: PlatformTypes.WECHAT,
       ...preDatas,
-      ...data
+      ...data,
+      dat: JSON.stringify(dat)
     };
+    const { st } = dat;
     if (st === PageLifeType.LOAD) {
       reportData = {
         ...reportData,
@@ -150,24 +150,24 @@ export class WxClient extends Core<WxOptionsType> {
 
   // lifecycle
 
-  lifecycleReport(datas: IAnyObject) {
+  lifecycleReport(data: IAnyObject) {
     const { uploadUrl, enabled } = this.getContext();
-    if (!datas) {
+    if (!data) {
       return;
     }
     if (!enabled) {
       return;
     }
     if (!this.appID) {
-      this.taskQueue.push(datas);
+      this.taskQueue.push(data);
       return;
     }
-    this.nextTick(this.report, this, uploadUrl, { app_id: this.appID, ...datas });
+    this.nextTick(this.report, this, uploadUrl, this.transform({ aid: this.appID, ...data }));
   }
 
   handleOnShow(route: string) {
     const last = wx.getStorageSync(EVENT_LOG_STORE_KEY);
-    if (last) {
+    if (Array.isArray(last)) {
       last.forEach((task: IAnyObject) => {
         this.lifecycleReport(task);
       });
@@ -177,7 +177,7 @@ export class WxClient extends Core<WxOptionsType> {
     const userInfo = getStorageSync(userStoreKey);
     this.setWxContext({ sid: sessionId, ui: userInfo, url: route });
     const lid = generateUUID();
-    const datas = this.transform({
+    const data = this.transform({
       lid,
       e: EventTypes.LIFECYCLE,
       dat: {
@@ -191,15 +191,15 @@ export class WxClient extends Core<WxOptionsType> {
       msg: `Enter "${route}"`,
       t: this.getTime()
     });
-    this.lifecycleReport(datas);
+    this.lifecycleReport(data);
   }
 
   handleOnHide(route: string) {
     if (this.requestTasks.size) {
+      wx.setStorage({ key: EVENT_LOG_STORE_KEY, data: [...this.requestTasks.entries()] });
       this.requestTasks.forEach((_, req) => {
         req.abort();
       });
-      wx.setStorage({ key: EVENT_LOG_STORE_KEY, data: this.requestTasks });
     }
     const lid = generateUUID();
     const datas = this.transform({
@@ -232,7 +232,7 @@ export class WxClient extends Core<WxOptionsType> {
       };
     };
   }
-  
+
   cusOnHide() {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const client = this;

@@ -4,6 +4,7 @@
     "module": "es6",
     "outDir": "esm",
     "lib": ["es2017", "es6"],
+    "target": "ES6",
     "typeRoots": [
       "../../node_modules"
     ],
