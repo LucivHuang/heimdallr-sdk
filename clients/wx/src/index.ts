@@ -162,7 +162,7 @@ export class WxClient extends Core<WxOptionsType> {
       this.taskQueue.push(data);
       return;
     }
-    this.nextTick(this.report, this, uploadUrl, this.transform({ aid: this.appID, ...data }));
+    this.nextTick(this.report, this, uploadUrl, { aid: this.appID, ...data });
   }
 
   handleOnShow(route: string) {
@@ -171,52 +171,53 @@ export class WxClient extends Core<WxOptionsType> {
       last.forEach((task: IAnyObject) => {
         this.lifecycleReport(task);
       });
+      wx.removeStorageSync(EVENT_LOG_STORE_KEY);
     }
     const { userStoreKey } = this.getClientOptions();
     const sessionId = generateUUID();
     const userInfo = getStorageSync(userStoreKey);
     this.setWxContext({ sid: sessionId, ui: userInfo, url: route });
     const lid = generateUUID();
-    const data = this.transform({
-      lid,
-      e: EventTypes.LIFECYCLE,
-      dat: {
-        st: PageLifeType.LOAD,
-        href: route
-      }
-    });
     this.breadcrumb.unshift({
       lid,
       bt: WxBreadcrumbTypes.LIFECYCLE,
       msg: `Enter "${route}"`,
       t: this.getTime()
     });
-    this.lifecycleReport(data);
+    this.lifecycleReport(
+      this.transform({
+        lid,
+        e: EventTypes.LIFECYCLE,
+        dat: {
+          st: PageLifeType.LOAD,
+          href: route
+        }
+      })
+    );
   }
 
   handleOnHide(route: string) {
     if (this.requestTasks.size) {
-      wx.setStorage({ key: EVENT_LOG_STORE_KEY, data: [...this.requestTasks.entries()] });
+      wx.setStorage({ key: EVENT_LOG_STORE_KEY, data: [...this.requestTasks.values()] });
       this.requestTasks.forEach((_, req) => {
         req.abort();
       });
     }
     const lid = generateUUID();
-    const datas = this.transform({
-      lid,
-      e: EventTypes.LIFECYCLE,
-      dat: {
-        st: PageLifeType.UNLOAD,
-        href: route
-      }
-    });
     this.breadcrumb.unshift({
       lid,
       bt: WxBreadcrumbTypes.LIFECYCLE,
       msg: `Leave "${route}"`,
       t: this.getTime()
     });
-    this.lifecycleReport(datas);
+    this.lifecycleReport(this.transform({
+      lid,
+      e: EventTypes.LIFECYCLE,
+      dat: {
+        st: PageLifeType.UNLOAD,
+        href: route
+      }
+    }));
     this.clearWxContext();
   }
 

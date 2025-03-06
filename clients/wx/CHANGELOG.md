@@ -1,5 +1,11 @@
 # @heimdallr-sdk/wx
 
+## 0.0.18
+
+### Patch Changes
+
+- feat: clear cache after report
+
 ## 0.0.17
 
 ### Patch Changes
