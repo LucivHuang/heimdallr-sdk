@@ -4,11 +4,14 @@ export interface WxOptionsType extends BaseOptionsType {
   /**
    * wx.request配置项
    */
-  reqOption?: WechatMiniprogram.RequestOption;
+  reqOption?: (
+    rs: (value: WechatMiniprogram.GeneralCallbackResult | PromiseLike<WechatMiniprogram.GeneralCallbackResult>) => void,
+    rj: (reason?: any) => void
+  ) => WechatMiniprogram.RequestOption;
   /**
    * 用户信息
    */
-  userStoreKey: string;
+  userStoreKey?: string;
 }
 
 export type WxTrackTypes = 'show' | 'hide';

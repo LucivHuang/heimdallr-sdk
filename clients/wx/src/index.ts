@@ -87,8 +87,10 @@ export class WxClient extends Core<WxOptionsType> {
   }
 
   report(url: string, data: IAnyObject): Promise<WechatMiniprogram.GeneralCallbackResult> {
-    const { reqOption = {} } = this.getClientOptions();
+    const { reqOption } = this.getClientOptions();
+
     return new Promise((rs, rj) => {
+      const options = typeof reqOption === 'function' ? reqOption(rs, rj) : {};
       const task = wx.request({
         success: (result) => {
           rs(result);
@@ -96,7 +98,7 @@ export class WxClient extends Core<WxOptionsType> {
         fail: (res) => rj(res),
         url,
         method: 'POST',
-        ...reqOption,
+        ...options,
         data,
         dataType: 'json',
         complete: () => {
@@ -173,10 +175,14 @@ export class WxClient extends Core<WxOptionsType> {
       });
       wx.removeStorageSync(EVENT_LOG_STORE_KEY);
     }
-    const { userStoreKey } = this.getClientOptions();
     const sessionId = generateUUID();
-    const userInfo = getStorageSync(userStoreKey);
-    this.setWxContext({ sid: sessionId, ui: userInfo, url: route });
+    const context: WxContextType = { sid: sessionId, url: route };
+    const { userStoreKey } = this.getClientOptions();
+    if (typeof userStoreKey === 'string') {
+      const userInfo = getStorageSync(userStoreKey);
+      context.ui = userInfo;
+    }
+    this.setWxContext(context);
     const lid = generateUUID();
     this.breadcrumb.unshift({
       lid,
@@ -210,14 +216,16 @@ export class WxClient extends Core<WxOptionsType> {
       msg: `Leave "${route}"`,
       t: this.getTime()
     });
-    this.lifecycleReport(this.transform({
-      lid,
-      e: EventTypes.LIFECYCLE,
-      dat: {
-        st: PageLifeType.UNLOAD,
-        href: route
-      }
-    }));
+    this.lifecycleReport(
+      this.transform({
+        lid,
+        e: EventTypes.LIFECYCLE,
+        dat: {
+          st: PageLifeType.UNLOAD,
+          href: route
+        }
+      })
+    );
     this.clearWxContext();
   }
 

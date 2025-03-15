@@ -13,7 +13,7 @@
 |enabled|Boolean|是否向后台发送事件|true/false|true|
 |plugins|Array|插件集合|-|-|
 |debug|Boolean|控制台是否显示报错|true/false|false|
-|reqOption|RequestOption|请求配置项（最高优先级）|-|-|
+|reqOption|(rs,rj) => RequestOption|请求配置项（最高优先级）|-|-|
 |userStoreKey|String|用户信息存储key|-|-|
 
 ### DSN

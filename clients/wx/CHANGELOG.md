@@ -1,5 +1,11 @@
 # @heimdallr-sdk/wx
 
+## 0.0.19
+
+### Patch Changes
+
+- feat: modify reqOption to function
+
 ## 0.0.18
 
 ### Patch Changes
