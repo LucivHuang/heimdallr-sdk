@@ -1,15 +1,15 @@
-import { parseStackFrames } from '../libs/parseErrorStk';
 import {
   BasePluginType,
-  EventTypes,
-  ReportDataType,
-  BrowserBreadcrumbTypes,
   BreadcrumbLevel,
+  BrowserBreadcrumbTypes,
+  EventTypes,
   IAnyObject,
+  ReportDataType,
   StoreType,
   TAG
 } from '@heimdallr-sdk/types';
 import { generateUUID, getStore, setStore } from '@heimdallr-sdk/utils';
+import { parseStackFrames } from '../libs/parseErrorStk';
 import { BrowserErrorTypes, CodeErrorOptions, CodeErrorType, ResourceErrorType } from '../types';
 
 const ERROR_CACHE = 'HEIMDALLR_SDK_ERROR_CACHE';
@@ -35,8 +35,10 @@ const errorPlugin = (options: CodeErrorOptions): BasePluginType => {
       window.addEventListener(
         'error',
         (e: ErrorEvent) => {
-          e.preventDefault();
-          console.error(TAG, e);
+          const { debug } = this.getClientOptions();
+          if (debug) {
+            console.error(TAG, e);
+          }
           notify({
             category: EventTypes.ERROR,
             data: e

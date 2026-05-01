@@ -1,11 +1,4 @@
-import {
-  BasePluginType,
-  BreadcrumbLevel,
-  BrowserBreadcrumbTypes,
-  EventTypes,
-  ReportDataType,
-  TAG
-} from '@heimdallr-sdk/types';
+import { BasePluginType, BreadcrumbLevel, BrowserBreadcrumbTypes, EventTypes, ReportDataType, TAG } from '@heimdallr-sdk/types';
 import { generateUUID } from '@heimdallr-sdk/utils';
 import { BrowserErrorTypes, PromiseErrorType } from '../types';
 
@@ -18,8 +11,10 @@ const PromiseErrorPlugin: BasePluginType = {
   name: 'promiseErrorPlugin',
   monitor(notify: (data: CollectedType) => void) {
     window.addEventListener('unhandledrejection', (e: PromiseRejectionEvent) => {
-      e.preventDefault();
-      console.error(TAG, e);
+      const { debug } = this.getClientOptions();
+      if (debug) {
+        console.error(TAG, e);
+      }
       notify({
         category: EventTypes.ERROR,
         data: e
