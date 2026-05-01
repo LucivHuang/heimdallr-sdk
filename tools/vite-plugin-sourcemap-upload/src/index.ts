@@ -1,7 +1,7 @@
-import path from 'path';
+import { ResponseType, SourcemapOptionType } from '@heimdallr-sdk/types';
 import fs from 'fs';
+import path from 'path';
 import request from 'request';
-import { SourcemapOptionType, ResponseType } from '@heimdallr-sdk/types';
 
 const TAG = '[vite-plugin-sourcemap-upload]: ';
 
@@ -14,6 +14,7 @@ export default function vitePluginSourcemapUpload(pluginOptions: SourcemapOption
       const { url, app_name, err_code = 'code', err_msg = 'msg' } = pluginOptions;
       if (!url || !app_name) {
         rejected({ code: -1, msg: 'missing url or app_name in options' });
+        return;
       }
 
       const fileStream = fs.createReadStream(filePath);
@@ -43,7 +44,8 @@ export default function vitePluginSourcemapUpload(pluginOptions: SourcemapOption
           return;
         }
         try {
-          const data = JSON.parse(res.body || '{}');
+          const body = res && res.body;
+          const data = JSON.parse(body || '{}');
           const code = data[err_code];
           const result = {
             code: code || code === 0 ? code : -1,

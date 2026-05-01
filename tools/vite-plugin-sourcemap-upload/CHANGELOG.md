@@ -1,5 +1,12 @@
 # @heimdallr-sdk/vite-plugin-sourcemap-upload
 
+## 0.0.7
+
+### Patch Changes
+
+- fix: 避免上传插件退出宿主进程
+
+
 ## 0.0.6
 
 ### Patch Changes
