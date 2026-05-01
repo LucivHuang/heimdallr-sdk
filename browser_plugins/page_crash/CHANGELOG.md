@@ -1,5 +1,12 @@
 # @heimdallr-sdk/page-crash
 
+## 0.0.24
+
+### Patch Changes
+
+- fix: 修复崩溃检测插件运行时问题
+
+
 ## 0.0.23
 
 ### Patch Changes
