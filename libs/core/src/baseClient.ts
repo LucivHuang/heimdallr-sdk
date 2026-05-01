@@ -1,4 +1,4 @@
-import { BaseOptionsType, BasePluginType, IAnyObject, ConsoleTypes, TAG } from '@heimdallr-sdk/types';
+import { BaseOptionsType, BasePluginType, IAnyObject, TAG } from '@heimdallr-sdk/types';
 import { formateUrlPath } from '@heimdallr-sdk/utils';
 import { Subscribe } from './libs/subscribe';
 import { CoreContextType } from './types';
@@ -15,41 +15,45 @@ export abstract class Core<O extends BaseOptionsType> {
 
   private context: CoreContextType;
   protected appID: string;
-  protected readonly taskQueue: Array<IAnyObject>;
-  private isReady: Boolean;
+  protected readonly taskQueue: Array<IAnyObject> = [];
+  private isReady = false;
+  private isAvailable = false;
+  private readonly maxTaskQueueSize = 100;
 
   constructor(options: O) {
-    this.options = options;
+    this.options = options || ({} as O);
     this.initConsole();
     if (!this.isRightEnv()) {
       console.warn(TAG, 'Client does not match the environment');
       return;
     }
-    this.bindOptions();
-    this.isReady = false;
-    this.taskQueue = [];
-    this.initAPP().then((id) => {
-      // 处理应用id
-      if (id && this.appID !== id) {
-        this.appID = id;
-      }
-      // 开始执行上报
-      this.isReady = true;
-      this.executeTaskQueue();
-    });
+    if (!this.bindOptions()) {
+      return;
+    }
+    this.isAvailable = true;
+    Promise.resolve()
+      .then(() => this.initAPP())
+      .then((id) => {
+        // 处理应用id
+        if (id && this.appID !== id) {
+          this.appID = id;
+        }
+        // 开始执行上报
+        this.isReady = true;
+        this.executeTaskQueue();
+      })
+      .catch((error) => {
+        this.isAvailable = false;
+        this.taskQueue.length = 0;
+        console.error(TAG, error);
+      });
   }
 
   /**
    * 初始化 console
    */
-   initConsole() {
-    const { debug } = this.options;
-    if (debug && typeof console !== 'undefined') {
-      return;
-    }
-    Object.keys(ConsoleTypes).forEach((type) => {
-      console[type] = () => null;
-    });
+  initConsole() {
+    return undefined;
   }
 
   /**
@@ -60,10 +64,14 @@ export abstract class Core<O extends BaseOptionsType> {
 
     if (!app || !dsn) {
       console.warn(TAG, 'Missing app or dsn in options');
-      return;
+      return false;
     }
 
     const { host, init, report = '' } = dsn;
+    if (!host || !init) {
+      console.warn(TAG, 'Missing dsn.host or dsn.init in options');
+      return false;
+    }
     const initUrl = formateUrlPath(host, init);
     const uploadUrl = formateUrlPath(host, report);
 
@@ -74,6 +82,7 @@ export abstract class Core<O extends BaseOptionsType> {
       debug,
       enabled
     };
+    return true;
   }
 
   /**
@@ -81,6 +90,9 @@ export abstract class Core<O extends BaseOptionsType> {
    * @param {BasePluginType[]} plugins - 用户传入的应用信息
    */
   use(plugins: BasePluginType[]) {
+    if (!this.isAvailable || !this.context) {
+      return;
+    }
     const { uploadUrl, enabled } = this.context;
     const sub = new Subscribe();
     const map = new Map<string, number>();
@@ -109,11 +121,14 @@ export abstract class Core<O extends BaseOptionsType> {
         if (!datas) {
           return;
         }
-        if (!enabled) {
+        if (!this.isAvailable || !enabled) {
           return;
         }
         if (!this.isReady) {
           // 应用未初始化，暂存任务
+          if (this.taskQueue.length >= this.maxTaskQueueSize) {
+            this.taskQueue.shift();
+          }
           this.taskQueue.push(datas);
           return;
         }
@@ -127,6 +142,9 @@ export abstract class Core<O extends BaseOptionsType> {
    * 执行任务队列
    */
   executeTaskQueue() {
+    if (!this.context) {
+      return;
+    }
     const { uploadUrl } = this.context;
     while (this.taskQueue.length) {
       const task = this.taskQueue.shift();
@@ -145,7 +163,7 @@ export abstract class Core<O extends BaseOptionsType> {
    * 获取上下文
    */
   getContext() {
-    return { ...this.context };
+    return { ...this.context } as CoreContextType;
   }
 
   /**
@@ -160,21 +178,21 @@ export abstract class Core<O extends BaseOptionsType> {
 
   /**
    * 抽象方法，注册/初始化应用
-   * @return {string} 应用id
+   * @return {string} 应用ID
    */
   abstract initAPP(): Promise<string>;
 
   /**
-   * 抽象方法，端的个性化数据，需子类自己实现
+   * 抽象方法，处理客户端数据
    * @param {IAnyObject} datas
    */
   abstract transform(datas: IAnyObject): IAnyObject;
 
   /**
-   * 抽象方法，端的请求方式不一致，需子类自己实现
+   * 抽象方法，上报数据
    * @param {string} url - 接口地址
-   * @param {} type - 请求方式（枚举类型，各端有差异）
    * @param {IAnyObject} datas - 上传数据
+   * @param {} type - 请求方式，各端可能有差异
    */
-  abstract report(url: string, datas: IAnyObject, type?: any): void;
+  abstract report(url: string, datas: IAnyObject, type?: any): any;
 }
