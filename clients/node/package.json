@@ -1,9 +1,9 @@
 {
   "name": "@heimdallr-sdk/node",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "A SDK For Monitoring NodeJs Errors",
   "license": "MIT",
-  "author": "LuciferHuang",
+  "author": "LucivHuang",
   "main": "dist/node.umd.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -11,13 +11,13 @@
     "dist",
     "esm"
   ],
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/node/README.md",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/node/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "keywords": [
     "heimdallr",
