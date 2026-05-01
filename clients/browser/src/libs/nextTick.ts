@@ -14,7 +14,7 @@ const flushCallbacks = () => {
   }
 }
 
-if (p) {
+if (p !== null) {
   timerFunc = () => {
     p.then(flushCallbacks).catch(err => console.error(err));
   };
