@@ -1,5 +1,12 @@
 # @heimdallr-sdk/wx-route
 
+## 0.0.11
+
+### Patch Changes
+
+- docs: rename author
+
+
 ## 0.0.10
 
 ### Patch Changes
