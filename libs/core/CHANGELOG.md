@@ -1,5 +1,12 @@
 # @heimdallr-sdk/core
 
+## 0.0.30
+
+### Patch Changes
+
+- fix: 加固初始化失败处理
+
+
 ## 0.0.29
 
 ### Patch Changes
