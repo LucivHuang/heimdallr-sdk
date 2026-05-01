@@ -1,9 +1,9 @@
 {
   "name": "@heimdallr-sdk/dom",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "A Plugin For Browser SDK",
   "license": "MIT",
-  "author": "LuciferHuang",
+  "author": "LucivHuang",
   "main": "dist/dom.umd.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -11,13 +11,13 @@
     "dist",
     "esm"
   ],
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/dom/README.md",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/dom/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "keywords": [
     "heimdallr",
