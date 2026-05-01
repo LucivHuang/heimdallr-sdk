@@ -1,5 +1,12 @@
 # @heimdallr-sdk/hash
 
+## 0.0.23
+
+### Patch Changes
+
+- docs: rename author
+
+
 ## 0.0.22
 
 ### Patch Changes
