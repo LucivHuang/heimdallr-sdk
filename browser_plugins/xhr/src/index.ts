@@ -23,19 +23,19 @@ function XHRPlugin(options: RequestPluginOptionType = {}): BasePluginType {
   return {
     name: 'XHRPlugin',
     monitor(notify: (data: HttpCollectDataType) => void) {
-      const { initUrl, uploadUrl } = this.context;
-      const client = this;
+      const { initUrl, uploadUrl } = this.getContext();
+      const getTime = this.getTime.bind(this);
       const ignore = [...ignoreUrls, uploadUrl, initUrl].map((url) => getUrlPath(url));
       replaceOld(originalXhrProto, 'open', (originalOpen: voidFun): voidFun => {
         return function (this: XMLHttp, ...args: any[]): void {
-          this.httpCollect = {
-            req: {
-              m: args[0] ? args[0].toUpperCase() : args[0],
-              url: args[1]
-            },
-            res: {},
-            t: client.getTime()
-          };
+            this.httpCollect = {
+              req: {
+                m: args[0] ? args[0].toUpperCase() : args[0],
+                url: args[1]
+              },
+              res: {},
+              t: getTime()
+            };
           originalOpen.apply(this, args);
         };
       });
@@ -48,7 +48,7 @@ function XHRPlugin(options: RequestPluginOptionType = {}): BasePluginType {
             if (isBlock) return;
             const { responseType, response, status } = this;
             req.data = args[0];
-            const eTime = client.getTime();
+            const eTime = getTime();
             if (reportResponds && ['', 'json', 'text'].indexOf(responseType) !== -1) {
               this.httpCollect.res.dat = typeof response === 'object' ? JSON.stringify(response) : response;
             }
