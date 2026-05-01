@@ -1,22 +1,22 @@
 {
   "name": "@heimdallr-sdk/types",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "@heimdallr-sdk/types",
   "license": "MIT",
-  "author": "LuciferHuang",
+  "author": "LucivHuang",
   "main": "esm/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
   "files": [
     "esm"
   ],
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/types/README.md",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/types/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "publishConfig": {
     "access": "public"

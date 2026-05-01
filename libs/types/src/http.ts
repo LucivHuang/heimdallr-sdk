@@ -1,5 +1,4 @@
 import { ReportDataMsgType } from './base';
-import { IAnyObject } from './common';
 import { MethodTypes } from './constant';
 
 export interface XhrResponse<T> {
@@ -21,14 +20,14 @@ export interface HttpRequest {
   /** 请求url */
   url: string;
   /** 请求参数（体） */
-  dat?: IAnyObject;
+  dat?: unknown;
 }
 
 export interface HttpResponse {
   /** 响应状态 */
   sta?: number;
   /** 响应数据 */
-  dat?: IAnyObject | string;
+  dat?: Record<string, any> | string;
   /** 响应消息 */
   msg?: string;
 }
