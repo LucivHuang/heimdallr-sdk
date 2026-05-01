@@ -1,5 +1,12 @@
 # @heimdallr-sdk/page-crash-worker
 
+## 0.0.25
+
+### Patch Changes
+
+- docs: rename author
+
+
 ## 0.0.24
 
 ### Patch Changes
