@@ -8,7 +8,6 @@ import {
   HttpTypes,
   MethodTypes,
   ReportDataType,
-  voidFun,
   RequestPluginOptionType
 } from '@heimdallr-sdk/types';
 import { generateUUID, getUrlPath, replaceOld } from '@heimdallr-sdk/utils';
@@ -18,16 +17,17 @@ function fetchPlugin(options: RequestPluginOptionType = {}): BasePluginType {
   return {
     name: 'fetchPlugin',
     monitor(notify: (data: HttpCollectDataType) => void) {
-      const { initUrl, uploadUrl } = this.context;
-      const client = this;
-      const ignore = [...ignoreUrls, uploadUrl, initUrl].map((url) => getUrlPath(url));
-      replaceOld(window, 'fetch', (originalFetch: voidFun) => {
-        return function (url: string, config: Partial<Request> = {}): void {
-          const sTime = client.getTime();
+      const { initUrl, uploadUrl } = this.getContext();
+      const getTime = this.getTime.bind(this);
+      const ignore = [...ignoreUrls, uploadUrl, initUrl].map((item) => getUrlPath(item));
+      replaceOld(window, 'fetch', (originalFetch: typeof window.fetch) => {
+        return function (url: RequestInfo, config: RequestInit = {}): Promise<Response> {
+          const requestUrl = typeof url === 'string' ? url : url.url;
+          const sTime = getTime();
           const m = (config && (config.method as MethodTypes)) || MethodTypes.GET;
           const httpCollect: HttpCollectDataType = {
             req: {
-              url,
+              url: requestUrl,
               m,
               dat: config && config.body
             },
@@ -42,11 +42,11 @@ function fetchPlugin(options: RequestPluginOptionType = {}): BasePluginType {
             ...config,
             headers
           };
-          const isBlock = ignore.includes(getUrlPath(url));
-          return originalFetch.apply(window, [url, config]).then(
+          const isBlock = ignore.includes(getUrlPath(requestUrl));
+          return originalFetch.call(window, url, config).then(
             (res: Response) => {
               const resClone = res.clone();
-              const eTime = client.getTime();
+              const eTime = getTime();
               httpCollect.et = eTime - sTime;
               httpCollect.res.sta = resClone.status;
               resClone.text().then((data) => {
@@ -59,11 +59,12 @@ function fetchPlugin(options: RequestPluginOptionType = {}): BasePluginType {
               return res;
             },
             (err: Error) => {
-              if (isBlock) return;
-              const eTime = client.getTime();
-              httpCollect.et = eTime - sTime;
-              httpCollect.res.sta = 0;
-              notify(httpCollect);
+              if (!isBlock) {
+                const eTime = getTime();
+                httpCollect.et = eTime - sTime;
+                httpCollect.res.sta = 0;
+                notify(httpCollect);
+              }
               throw err;
             }
           );
