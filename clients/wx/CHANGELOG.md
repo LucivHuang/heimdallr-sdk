@@ -1,5 +1,12 @@
 # @heimdallr-sdk/wx
 
+## 0.0.20
+
+### Patch Changes
+
+- chore: 类型修正
+
+
 ## 0.0.19
 
 ### Patch Changes

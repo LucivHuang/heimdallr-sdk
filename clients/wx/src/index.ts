@@ -12,7 +12,7 @@ export class WxClient extends Core<WxOptionsType> {
   private wxContext: WxContextType;
   private wxSettings: WxSettingType;
   private diff: number;
-  private requestTasks: Map<WechatMiniprogram.RequestTask, IAnyObject>;
+  private readonly requestTasks: Map<WechatMiniprogram.RequestTask, IAnyObject>;
   public readonly breadcrumb: Breadcrumb<WxOptionsType>;
   constructor(options: WxOptionsType) {
     super(options);
