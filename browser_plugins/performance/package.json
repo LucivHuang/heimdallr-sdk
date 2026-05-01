@@ -1,9 +1,9 @@
 {
   "name": "@heimdallr-sdk/performance",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Plugin For Browser SDK",
   "license": "MIT",
-  "author": "LuciferHuang",
+  "author": "LucivHuang",
   "main": "dist/performance.umd.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -11,13 +11,13 @@
     "dist",
     "esm"
   ],
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/performance/README.md",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/performance/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "keywords": [
     "heimdallr",
