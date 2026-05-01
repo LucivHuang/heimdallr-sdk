@@ -1,20 +1,20 @@
 {
   "name": "@heimdallr-sdk/page-crash-worker",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "@heimdallr-sdk/page-crash-worker",
   "license": "MIT",
-  "author": "LuciferHuang",
+  "author": "LucivHuang",
   "main": "dist/page_crash_worker.iife.js",
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/page_crash_worker/README.md",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/page_crash_worker/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "keywords": [
     "heimdallr",
@@ -29,7 +29,7 @@
   },
   "scripts": {
     "dev": "rollup -c rollup.config.dev.js -w",
-    "build": "rimraf dist && rollup --c"
+    "build": "rimraf dist && rollup -c"
   },
   "dependencies": {
     "@heimdallr-sdk/types": "workspace:^",
