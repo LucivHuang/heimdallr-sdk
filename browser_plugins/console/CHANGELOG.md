@@ -1,5 +1,12 @@
 # @heimdallr-sdk/console
 
+## 0.0.22
+
+### Patch Changes
+
+- docs: rename author
+
+
 ## 0.0.21
 
 ### Patch Changes
