@@ -1,5 +1,12 @@
 # @heimdallr-sdk/performance
 
+## 1.0.3
+
+### Patch Changes
+
+- docs: rename author
+
+
 ## 1.0.2
 
 ### Patch Changes
