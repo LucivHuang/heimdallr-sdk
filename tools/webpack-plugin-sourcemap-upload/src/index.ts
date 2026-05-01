@@ -1,6 +1,6 @@
-import { SourcemapOptionType, ResponseType } from '@heimdallr-sdk/types';
-import path from 'path';
+import { ResponseType, SourcemapOptionType } from '@heimdallr-sdk/types';
 import fs from 'fs';
+import path from 'path';
 import request from 'request';
 
 const TAG = '[webpack-plugin-sourcemap-upload]: ';
@@ -13,7 +13,7 @@ class UploadSourceMapPlugin<O extends SourcemapOptionType> {
   }
 
   apply(compiler) {
-    compiler.hooks.done.tapAsync('upload-sourcemap-plugin', async (status: { compilation: { outputOptions: { path: string } } }) => {
+    compiler.hooks.done.tapPromise('upload-sourcemap-plugin', async (status: { compilation: { outputOptions: { path: string } } }) => {
       const outputPath = status.compilation.outputOptions.path;
       const files = fs.readdirSync(outputPath);
       const list = files.filter((filename) => filename.endsWith('.js.map'));
@@ -32,7 +32,6 @@ class UploadSourceMapPlugin<O extends SourcemapOptionType> {
         }
       }
       console.log(TAG, 'upload finished');
-      process.exit();
     });
   }
 
@@ -41,6 +40,7 @@ class UploadSourceMapPlugin<O extends SourcemapOptionType> {
       const { url, app_name, err_code = 'code', err_msg = 'msg' } = this.options;
       if (!url || !app_name) {
         rejected({ code: -1, msg: 'missing url or app_name in options' });
+        return;
       }
 
       const fileStream = fs.createReadStream(filePath);
@@ -63,7 +63,7 @@ class UploadSourceMapPlugin<O extends SourcemapOptionType> {
         }
       };
 
-      request(config, function (err, { body }) {
+      request(config, function (err, res) {
         if (err) {
           rejected({
             code: -1,
@@ -72,7 +72,8 @@ class UploadSourceMapPlugin<O extends SourcemapOptionType> {
           return;
         }
         try {
-          const data = JSON.parse(body);
+          const body = res && res.body;
+          const data = JSON.parse(body || '{}');
           const code = data[err_code];
           const result = {
             code: code || code === 0 ? code : -1,

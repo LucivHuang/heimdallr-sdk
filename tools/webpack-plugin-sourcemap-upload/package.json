@@ -1,9 +1,9 @@
 {
   "name": "@heimdallr-sdk/webpack-plugin-sourcemap-upload",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A Plugin For Webpack Upload Sourcemap Files",
   "license": "MIT",
-  "author": "LuciferHuang",
+  "author": "LucivHuang",
   "main": "dist/webpack-plugin-sourcemap-upload.umd.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -11,13 +11,13 @@
     "dist",
     "esm"
   ],
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/webpack-plugin-sourcemap-upload/README.md",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/webpack-plugin-sourcemap-upload/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "keywords": [
     "heimdallr",
