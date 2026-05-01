@@ -1,5 +1,12 @@
 # @heimdallr-sdk/types
 
+## 0.0.19
+
+### Patch Changes
+
+- chore: 类型修正
+
+
 ## 0.0.18
 
 ### Patch Changes
