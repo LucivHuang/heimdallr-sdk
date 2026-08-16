@@ -1,39 +1,46 @@
 # @heimdallr-sdk/cli
 
-A Cli For @heimdallr-sdk/manager,@heimdallr-sdk/server,@heimdallr-sdk/server-consumer,@heimdallr-sdk/server-producer
+A CLI for creating runnable Heimdallr playground projects.
 
-## Get Started
-
-### Install
+## Install
 
 ```bash
-npm i @heimdallr-sdk/cli
+npm i -g @heimdallr-sdk/cli
 ```
 
-### Run
+## Commands
+
+### Create Playground Project
 
 ```bash
+heimdallr create
 heimdallr-create
 ```
 
-## Templates
+`create` copies code directly from `playground`, then rewrites the generated project's local config.
 
-### client
+```bash
+heimdallr create --template manager --name heimdallr_manager --client-api localhost:8001
+heimdallr create --template server --name heimdallr_server --database heimdallr --mysql-port 3307
+heimdallr create --template server-rabbitmq --name heimdallr_mqserver --rabbit-host localhost
+heimdallr create --template mock-app --name heimdallr_mock_app --client-api localhost:8001
+```
 
-A manager for @heimdallr-sdk
+Available templates:
 
-### server
+- `manager` -> `playground/manager`
+- `server` -> `playground/server`
+- `server-rabbitmq` -> `playground/server_consumer` and `playground/server_producer`
+- `mock-app` -> `playground/mock_app`
 
-A server for @heimdallr-sdk
+Config flags:
 
-### Server with RabbitMQ
+- `--client-api <host:port>`
+- `--database <name>`
+- `--mysql-host <host>`
+- `--mysql-port <port>`
+- `--mysql-user <user>`
+- `--mysql-password <password>`
+- `--rabbit-host <host>`
+- `--force` - overwrite existing directory
 
-Provide services using rabbitMQ
-
-#### consumer
-
-RabbitMQ consumers
-
-#### producer
-
-RabbitMQ producers
