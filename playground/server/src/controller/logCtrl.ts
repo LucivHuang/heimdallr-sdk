@@ -79,7 +79,7 @@ async function uploadCtrl(res, param, ipInfo: IPInfo) {
       id: sid,
       user_id: `${uid}`,
       account: `${acc}`,
-      ip,
+      ip: error ? '127.0.0.1' : ip,
       province: region,
       path: url,
       page_title: ttl,

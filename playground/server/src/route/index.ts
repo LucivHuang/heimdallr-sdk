@@ -5,6 +5,7 @@ import { uploadPost as logPostUpload, uploadGet as logGetUpload, list as logList
 import { upload as smUpload, search as smSearch } from '../controller/sourcemapCtrl';
 import { statisticTotalGet, statisticProjGet } from '../controller/statisticCtrl';
 import { list as sessionList, detail as sessionDetail } from '../controller/sessionCtrl';
+import { aiCtrl } from '../controller/aiCtrl';
 
 const resolveDirname = (target: string) => resolve(__dirname, target);
 
@@ -28,6 +29,16 @@ router.get('/sourcemap/search', smSearch);
 router.get('/session/list', sessionList);
 router.get('/session/detail', sessionDetail);
 
+// AI analysis
+router.post('/ai/analyze/error', aiCtrl.analyzeError);
+router.post('/ai/analyze/performance', aiCtrl.analyzePerformance);
+router.post('/ai/analyze/trend', aiCtrl.analyzeTrend);
+router.get('/ai/insights', aiCtrl.getInsights);
+router.put('/ai/insights/:id/read', aiCtrl.markInsightRead);
+router.post('/ai/config/test', aiCtrl.testConnection);
+router.get('/ai/config', aiCtrl.getConfig);
+router.put('/ai/config', aiCtrl.updateConfig);
+
 router.get('/test', (req, res) => {
   setTimeout(() => {
     res.send({
@@ -41,7 +52,7 @@ router.get('/test', (req, res) => {
 });
 
 // resource
-router.use('/browser-dist', express.static(resolveDirname('../../../clients/browser/dist')));
+router.use('/browser-dist', express.static(resolveDirname('../../../../clients/browser/dist')));
 router.use('/customer-dist', express.static(resolveDirname('../../../../browser_plugins/customer/dist')));
 router.use('/dom-dist', express.static(resolveDirname('../../../../browser_plugins/dom/dist')));
 router.use('/fetch-dist', express.static(resolveDirname('../../../../browser_plugins/fetch/dist')));
@@ -51,7 +62,10 @@ router.use('/crash-dist', express.static(resolveDirname('../../../../browser_plu
 router.use('/crash-worker', express.static(resolveDirname('../../../../browser_plugins/page_crash_worker/dist')));
 router.use('/performance-dist', express.static(resolveDirname('../../../../browser_plugins/performance/dist')));
 router.use('/xhr-dist', express.static(resolveDirname('../../../../browser_plugins/xhr/dist')));
+router.use('/console-dist', express.static(resolveDirname('../../../../browser_plugins/console/dist')));
 router.use('/record-dist', express.static(resolveDirname('../../../../browser_plugins/record/dist')));
+router.use('/vue-dist', express.static(resolveDirname('../../../../browser_plugins/vue/dist')));
+router.use('/vue3', express.static(resolveDirname('../../../../node_modules/.pnpm/vue@3.5.33_typescript@4.9.5/node_modules/vue/dist')));
 
 // views
 router.use('/', express.static(resolveDirname('../views')));
