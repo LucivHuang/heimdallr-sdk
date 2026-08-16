@@ -13,8 +13,19 @@
     <script src="/crash-dist/page_crash.iife.js"></script>
     <script src="/performance-dist/performance.iife.js"></script>
     <script src="/xhr-dist/xhr.iife.js"></script>
+    <script src="/console-dist/console.iife.js"></script>
     <script src="/record-dist/record.iife.js"></script>
-    <script async src="/browser-dist/browser.iife.js"></script>
+    <script src="/vue-dist/vue.iife.js"></script>
+    <!-- Vue 3 runtime for the demo Vue app (must load before __HEIMDALLR_OPTIONS__) -->
+    <script src="/vue3/vue.global.prod.js"></script>
+    <script>
+      // Create a minimal Vue 3 app and expose it BEFORE __HEIMDALLR_OPTIONS__
+      // so the Vue plugin can set vm.config.errorHandler on the real app instance
+      if (typeof Vue !== 'undefined') {
+        const vueApp = Vue.createApp({ template: '<div id="vue-root"></div>' });
+        window.__VUE_APP__ = vueApp;
+      }
+    </script>
     <script>
       window.state = { a: { user: { name: 'test' } } };
       window.__HEIMDALLR_OPTIONS__ = {
@@ -29,30 +40,40 @@
           desc: 'test proj'
         },
         plugins: [
-          HEIMDALLR_CUSTOMER,
-          HEIMDALLR_DOM,
-          HEIMDALLR_FETCH,
-          HEIMDALLR_HASH,
-          HEIMDALLR_HISTORY,
-          HEIMDALLR_PAGE_CRASH,
-          HEIMDALLR_PERFORMANCE,
-          HEIMDALLR_XHR,
-          HEIMDALLR_RECORD
+          HEIMDALLR_CONSOLE(),
+          HEIMDALLR_CUSTOMER({
+            customers: [
+              { name: 'code', position: 'local' }
+            ]
+          }),
+          HEIMDALLR_DOM(),
+          HEIMDALLR_FETCH(),
+          HEIMDALLR_HASH(),
+          HEIMDALLR_HISTORY(),
+          HEIMDALLR_PAGE_CRASH(),
+          HEIMDALLR_PERFORMANCE(),
+          HEIMDALLR_RECORD(),
+          HEIMDALLR_VUE({ vue: window.__VUE_APP__ }),
+          HEIMDALLR_XHR()
         ],
         userIdentify: {
           name: 'state.a.user.name',
           position: 'global'
         },
-        customers: [
-          {
-            name: 'code',
-            position: 'local'
-          }
-        ],
         pageCrashWorkerUrl: '/crash-worker/page_crash_worker.iife.js',
         ignoreUrls: ['http://localhost:8001/browser-sync/socket.io'], // 过滤无需监控的api
         debug: true
       };
+    </script>
+    <!-- 必须在 __HEIMDALLR_OPTIONS__ 定义之后加载：iife 包含自调用初始化逻辑 -->
+    <script src="/browser-dist/browser.iife.js"></script>
+    <script>
+      // Mount the Vue app after SDK init so errorHandler is already set
+      if (window.__VUE_APP__) {
+        const mountEl = document.createElement('div');
+        document.body.appendChild(mountEl);
+        window.__VUE_APP__.mount(mountEl);
+      }
     </script>
   </head>
   <body>

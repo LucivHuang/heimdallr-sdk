@@ -4,14 +4,14 @@
   "private": true,
   "description": "",
   "license": "MIT",
-  "author": "LuciferHuang",
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/server/README.md",
+  "author": "LucivHuang",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/server/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "keywords": [
     "heimdallr",
@@ -26,19 +26,24 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "prisma": "npx prisma db push --schema ./schema.prisma",
+    "postinstall": "npx prisma generate --schema ./schema.prisma",
     "build": "npm-run-all reset compile",
     "compile": "tsc",
     "reset": "rimraf dist/*"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.92.0",
     "@prisma/client": "^4.8.1",
+    "axios": "^0.21.4",
     "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^4.18.1",
     "express-formidable": "^1.2.0",
     "express-ip": "^1.0.4",
     "nanoid": "^3.3.6",
+    "openai": "^6.35.0",
     "portfinder": "^1.0.32",
-    "prisma": "^4.2.0",
+    "prisma": "^4.8.1",
     "source-map": "^0.7.4"
   },
   "devDependencies": {
