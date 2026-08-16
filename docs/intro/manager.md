@@ -1,5 +1,7 @@
 # 管理
 
+> heimdallr-sdk — 首创插件化、可插拔的前端埋点 SDK，为前端监控提供灵活可扩展的解决方案。
+
 ## Server
 
 服务端作为私有子包，不发布，可通过 [@heimdallr-sdk/cli](https://www.npmjs.com/package/@heimdallr-sdk/cli) 脚手架快速部署
@@ -63,7 +65,7 @@
 
 Manager 即监控服务的管理后台，私有包，不发布，同样可以通过 [@heimdallr-sdk/cli](https://www.npmjs.com/package/@heimdallr-sdk/cli) 脚手架工具快速部署
 
-使用了自己写的 Vue3 脚手架 [vva-cli](https://github.com/LuciferHuang/vva-cli) 快速开发的，技术栈是 Vue3 + Typescript + Element-Plus，使用 Vite 打包编译
+使用了自己写的 Vue3 脚手架 [vva-cli](https://github.com/LucivHuang/vva-cli) 快速开发的，技术栈是 Vue3 + Typescript + Element-Plus，使用 Vite 打包编译
 
 有以下四个模块：
 

@@ -40,7 +40,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/LuciferHuang/heimdallr-sdk' }
+      { icon: 'github', link: 'https://github.com/LucivHuang/heimdallr-sdk' }
     ]
   }
 })
