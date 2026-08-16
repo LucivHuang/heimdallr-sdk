@@ -4,14 +4,14 @@
   "private": true,
   "description": "",
   "license": "MIT",
-  "author": "LuciferHuang",
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/server_producer/README.md",
+  "author": "LucivHuang",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/server_producer/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "keywords": [
     "heimdallr",
