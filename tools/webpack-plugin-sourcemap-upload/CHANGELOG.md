@@ -1,5 +1,6 @@
 # @heimdallr-sdk/webpack-plugin-sourcemap-upload
 
+<<<<<<< HEAD
 ## 0.0.7
 
 ### Patch Changes
@@ -7,6 +8,8 @@
 - fix: 避免上传插件退出宿主进程
 
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 ## 0.0.6
 
 ### Patch Changes

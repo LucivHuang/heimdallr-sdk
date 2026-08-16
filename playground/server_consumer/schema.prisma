@@ -58,6 +58,7 @@ model BreadCrumb {
     level    Int
     time     DateTime
 }
+<<<<<<< HEAD
 
 model AIAnalysis {
     id          String   @unique
@@ -84,3 +85,5 @@ model AIInsight {
     is_read     Boolean  @default(false)
     ctime       DateTime @default(now())
 }
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f

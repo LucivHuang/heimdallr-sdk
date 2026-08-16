@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "private": true,
   "license": "MIT",
-  "author": "LucivHuang",
+  "author": "LuciferHuang",
   "packageManager": "pnpm@9.7.1",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./scripts/run.js",

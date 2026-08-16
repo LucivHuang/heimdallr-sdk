@@ -1,6 +1,10 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.3/schema.json",
+<<<<<<< HEAD
   "changelog": ["@changesets/changelog-github", { "repo": "LucivHuang/heimdallr-sdk" }],
+=======
+  "changelog": ["@changesets/changelog-github", { "repo": "LuciferHuang/heimdallr-sdk" }],
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   "commit": false,
   "fixed": [],
   "linked": [],

@@ -1,5 +1,6 @@
 # @heimdallr-sdk/fetch
 
+<<<<<<< HEAD
 ## 0.0.23
 
 ### Patch Changes
@@ -7,6 +8,8 @@
 - fix: 保持原始 fetch 行为并修正类型
 
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 ## 0.0.22
 
 ### Patch Changes

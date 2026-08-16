@@ -14,7 +14,10 @@ export default function vitePluginSourcemapUpload(pluginOptions: SourcemapOption
       const { url, app_name, err_code = 'code', err_msg = 'msg' } = pluginOptions;
       if (!url || !app_name) {
         rejected({ code: -1, msg: 'missing url or app_name in options' });
+<<<<<<< HEAD
         return;
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
       }
 
       const fileStream = fs.createReadStream(filePath);
@@ -44,8 +47,12 @@ export default function vitePluginSourcemapUpload(pluginOptions: SourcemapOption
           return;
         }
         try {
+<<<<<<< HEAD
           const body = res && res.body;
           const data = JSON.parse(body || '{}');
+=======
+          const data = JSON.parse(res.body || '{}');
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
           const code = data[err_code];
           const result = {
             code: code || code === 0 ? code : -1,

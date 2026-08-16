@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const { white, green, red, cyan } = require('chalk');
+=======
+const { white, green, red } = require('chalk');
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 const boxen = require('boxen');
 
 const box = (message, title, boxTitle, options) =>
@@ -16,11 +20,16 @@ const box = (message, title, boxTitle, options) =>
   ) + '\n';
 
 const successBox = (message, title) =>
+<<<<<<< HEAD
   box(message, green(title), green('Success'), {
+=======
+  box(message, green(title), green('✔ Success'), {
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
     borderColor: 'green'
   });
 
 const errorBox = (message, title) =>
+<<<<<<< HEAD
   box(message, red(title), red('Error'), {
     borderColor: 'red'
   });
@@ -35,4 +44,14 @@ module.exports = {
   successBox,
   errorBox,
   infoBox
+=======
+  box(message, red(title), red('✖ Error'), {
+    borderColor: 'red'
+  });
+
+module.exports = {
+  box,
+  successBox,
+  errorBox
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 };

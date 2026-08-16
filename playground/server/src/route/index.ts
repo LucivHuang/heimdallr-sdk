@@ -52,7 +52,11 @@ router.get('/test', (req, res) => {
 });
 
 // resource
+<<<<<<< HEAD
 router.use('/browser-dist', express.static(resolveDirname('../../../../clients/browser/dist')));
+=======
+router.use('/browser-dist', express.static(resolveDirname('../../../clients/browser/dist')));
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 router.use('/customer-dist', express.static(resolveDirname('../../../../browser_plugins/customer/dist')));
 router.use('/dom-dist', express.static(resolveDirname('../../../../browser_plugins/dom/dist')));
 router.use('/fetch-dist', express.static(resolveDirname('../../../../browser_plugins/fetch/dist')));
@@ -62,10 +66,14 @@ router.use('/crash-dist', express.static(resolveDirname('../../../../browser_plu
 router.use('/crash-worker', express.static(resolveDirname('../../../../browser_plugins/page_crash_worker/dist')));
 router.use('/performance-dist', express.static(resolveDirname('../../../../browser_plugins/performance/dist')));
 router.use('/xhr-dist', express.static(resolveDirname('../../../../browser_plugins/xhr/dist')));
+<<<<<<< HEAD
 router.use('/console-dist', express.static(resolveDirname('../../../../browser_plugins/console/dist')));
 router.use('/record-dist', express.static(resolveDirname('../../../../browser_plugins/record/dist')));
 router.use('/vue-dist', express.static(resolveDirname('../../../../browser_plugins/vue/dist')));
 router.use('/vue3', express.static(resolveDirname('../../../../node_modules/.pnpm/vue@3.5.33_typescript@4.9.5/node_modules/vue/dist')));
+=======
+router.use('/record-dist', express.static(resolveDirname('../../../../browser_plugins/record/dist')));
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 
 // views
 router.use('/', express.static(resolveDirname('../views')));

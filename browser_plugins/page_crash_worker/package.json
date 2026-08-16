@@ -1,13 +1,21 @@
 {
   "name": "@heimdallr-sdk/page-crash-worker",
+<<<<<<< HEAD
   "version": "0.0.25",
   "description": "@heimdallr-sdk/page-crash-worker",
   "license": "MIT",
   "author": "LucivHuang",
+=======
+  "version": "0.0.24",
+  "description": "@heimdallr-sdk/page-crash-worker",
+  "license": "MIT",
+  "author": "LuciferHuang",
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   "main": "dist/page_crash_worker.iife.js",
   "files": [
     "dist"
   ],
+<<<<<<< HEAD
   "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/page_crash_worker/README.md",
   "repository": {
     "type": "git",
@@ -15,6 +23,15 @@
   },
   "bugs": {
     "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
+=======
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/page_crash_worker/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   },
   "keywords": [
     "heimdallr",
@@ -29,7 +46,11 @@
   },
   "scripts": {
     "dev": "rollup -c rollup.config.dev.js -w",
+<<<<<<< HEAD
     "build": "rimraf dist && rollup -c"
+=======
+    "build": "rimraf dist && rollup --c"
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   },
   "dependencies": {
     "@heimdallr-sdk/types": "workspace:^",

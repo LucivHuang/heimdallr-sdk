@@ -1,0 +1,60 @@
+datasource db {
+    provider = "mysql"
+    url      = "mysql://<%= mysql_user %>:<%= mysql_pwd %>@<%= mysql_host %>:<%= mysql_port %>/<%= database %>"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Project {
+    id     String   @unique
+    name   String   @unique
+    leader String
+    desc   String
+    ctime  DateTime
+}
+
+model Session {
+    id            String   @unique
+    user_id       String
+    account       String
+    ip            String
+    province      String
+    path          String   @db.LongText
+    page_title    String
+    platform      String
+    stay_time     Int
+    terminal      String
+    language      String
+    events        String   @db.LongText
+    breadcrumb    String   @db.LongText
+    user_agent    String   @db.VarChar(255)
+    window_size   String
+    document_size String
+    etime         DateTime
+    ltime         DateTime
+    ctime         DateTime @default(now()) @updatedAt
+}
+
+model Log {
+    id            String   @unique
+    ctime         DateTime @default(now()) @updatedAt
+    otime         DateTime
+    type          String
+    sub_type      String
+    session_id    String
+    ascription_id String
+    data          String   @db.LongText
+    platform      String
+    path          String   @db.LongText
+}
+
+model BreadCrumb {
+    id       String   @unique
+    event_id String
+    type     Int
+    message  String
+    level    Int
+    time     DateTime
+}

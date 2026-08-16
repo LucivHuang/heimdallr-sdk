@@ -33,7 +33,8 @@ module.exports = {
       // 不允许在范型和返回值之外的地方使用 void 类型
       '@typescript-eslint/no-invalid-void-type': 2,
       // 不可变的私有属性标记成 readonly
-      '@typescript-eslint/prefer-readonly': ['error', { onlyInlineLambdas: true }]
+      '@typescript-eslint/prefer-readonly': ['error', { onlyInlineLambdas: true }],
+      "@typescript-eslint/no-this-alias": ["off"]
     }
   }
   

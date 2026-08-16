@@ -1,5 +1,6 @@
 # @heimdallr-sdk/node
 
+<<<<<<< HEAD
 ## 0.0.20
 
 ### Patch Changes
@@ -7,6 +8,8 @@
 - docs: rename author
 
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 ## 0.0.19
 
 ### Patch Changes

@@ -1,5 +1,6 @@
 # @heimdallr-sdk/xhr
 
+<<<<<<< HEAD
 ## 0.0.23
 
 ### Patch Changes
@@ -7,6 +8,8 @@
 - chore: update author name and optimize context access
 
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 ## 0.0.22
 
 ### Patch Changes

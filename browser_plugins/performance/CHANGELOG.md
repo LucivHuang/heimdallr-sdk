@@ -1,5 +1,6 @@
 # @heimdallr-sdk/performance
 
+<<<<<<< HEAD
 ## 1.0.3
 
 ### Patch Changes
@@ -7,6 +8,8 @@
 - docs: rename author
 
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 ## 1.0.2
 
 ### Patch Changes

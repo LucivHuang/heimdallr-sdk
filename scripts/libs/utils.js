@@ -55,6 +55,7 @@ const isBelongPlayground = (file) => /^playground\//.test(file);
 
 const isBelongDocs = (file) => /^docs\//.test(file);
 
+<<<<<<< HEAD
 const SCOPE_ROOTS = ['libs', 'clients', 'browser_plugins', 'wx_plugins', 'tools', 'playground'];
 
 const normalizeFilePath = (file) => file.replace(/\\/g, '/');
@@ -101,13 +102,18 @@ const groupFilesByCommitScope = (files) =>
     return scopes;
   }, {});
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 module.exports = {
   IGNORES,
   getPkgOptsByMode,
   getDirByType,
+<<<<<<< HEAD
   getCommitScope,
   getCommitPackageDir,
   groupFilesByCommitScope,
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   isBelongLibs,
   isBelongCli,
   isBelongBrowserPlugins,

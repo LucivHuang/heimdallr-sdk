@@ -4,7 +4,11 @@
   "private": true,
   "description": "@heimdallr-sdk/manager",
   "license": "MIT",
+<<<<<<< HEAD
   "author": "LucivHuang",
+=======
+  "author": "LuciferHuang",
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite --open",
     "build:private": "vue-tsc --noEmit && vite build",

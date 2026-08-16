@@ -1,4 +1,5 @@
 const path = require('path');
+<<<<<<< HEAD
 const fs = require('fs');
 const childProcess = require('child_process');
 const inquirer = require('inquirer');
@@ -78,19 +79,95 @@ const updateVersionAndChangelog = ({ packageDir, message, bumpType }) => {
 
   const stagedFiles = childProcess
     .execSync('git diff --cached --name-only --diff-filter=ACMDUXB')
+=======
+const childProcess = require('child_process');
+const inquirer = require('inquirer');
+const chalk = require('chalk');
+const {
+  isBelongLibs,
+  isBelongCli,
+  isBelongBrowserPlugins,
+  isBelongWxPlugins,
+  isBelongTools,
+  isBelongPlayground,
+  isBelongDocs
+} = require('./libs/utils');
+
+(async () => {
+  /** 获取工作区改变的文件 */
+  const files = childProcess
+    .execSync('git diff --name-only --diff-filter=ACMDUXB', { silent: true })
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
     .toString()
     .split('\n')
     .filter(Boolean);
 
+<<<<<<< HEAD
   const newFiles = childProcess
     .execSync('git ls-files --others --exclude-standard')
+=======
+  // 获取新增未追踪的文件
+  const newFiles = childProcess
+    .execSync(`git status --porcelain | grep '^??' | cut -c4-`, { silent: true })
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
     .toString()
     .split('\n')
     .filter(Boolean);
 
+<<<<<<< HEAD
   const files = Array.from(new Set([...changedFiles, ...stagedFiles, ...newFiles]));
 
   const categories = groupFilesByCommitScope(files);
+=======
+  files.push(...newFiles);
+
+  const categories = {
+    libs: [],
+    clients: [],
+    browser_plugins: [],
+    wx_plugins: [],
+    tools: [],
+    playground: [],
+    docs: [],
+    sdk: []
+  };
+
+  files.forEach((file) => {
+    switch (true) {
+      case isBelongLibs(file):
+        categories.libs.push(file);
+        break;
+
+      case isBelongCli(file):
+        categories.clients.push(file);
+        break;
+
+      case isBelongBrowserPlugins(file):
+        categories.browser_plugins.push(file);
+        break;
+
+      case isBelongWxPlugins(file):
+        categories.wx_plugins.push(file);
+        break;
+
+      case isBelongTools(file):
+        categories.tools.push(file);
+        break;
+
+      case isBelongPlayground(file):
+        categories.playground.push(file);
+        break;
+
+      case isBelongDocs(file):
+        categories.docs.push(file);
+        break;
+
+      default:
+        categories.sdk.push(file);
+        break;
+    }
+  });
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 
   const choices = Object.keys(categories).reduce((choices, key) => {
     if (categories[key].length > 0) {
@@ -105,13 +182,21 @@ const updateVersionAndChangelog = ({ packageDir, message, bumpType }) => {
   }
 
   let category = choices[0];
+<<<<<<< HEAD
+=======
+  // 如果只有一个选项，不需要选择
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   if (choices.length > 1) {
     const res = await inquirer.prompt([
       {
         name: 'category',
         type: 'list',
         choices: choices,
+<<<<<<< HEAD
         message: '请选择需要提交的 scope：'
+=======
+        message: '请选择需要提交的工作空间目录：'
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
       }
     ]);
     category = res.category;
@@ -126,6 +211,7 @@ const updateVersionAndChangelog = ({ packageDir, message, bumpType }) => {
     }
   ]);
 
+<<<<<<< HEAD
   const { shouldUpdateVersion } = await inquirer.prompt([
     {
       name: 'shouldUpdateVersion',
@@ -164,5 +250,20 @@ const updateVersionAndChangelog = ({ packageDir, message, bumpType }) => {
     });
     console.log(chalk.red(`\n${error.message}\n`));
     process.exit(1);
+=======
+  //路径改成绝对路径
+  const addFiles = categories[category.replace('/', '.')].map((file) => path.resolve(__dirname, '../', file));
+
+  try {
+    childProcess.execSync(`git add ${addFiles.join(' ')}`, { stdio: 'inherit' });
+    childProcess.execSync(`git commit -m ${JSON.stringify(message)}`, {
+      stdio: 'inherit'
+    });
+  } catch (_) {
+    // 如果提交失败，取消暂存
+    childProcess.execSync(`git restore --staged .`, {
+      cwd: path.resolve(__dirname, '../../..')
+    });
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   }
 })();

@@ -1,5 +1,6 @@
 # @heimdallr-sdk/browser
 
+<<<<<<< HEAD
 ## 0.0.39
 
 ### Patch Changes
@@ -7,6 +8,8 @@
 - fix: 降低错误采集插件副作用
 
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 ## 0.0.38
 
 ### Patch Changes

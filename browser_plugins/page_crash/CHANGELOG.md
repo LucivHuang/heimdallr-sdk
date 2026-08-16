@@ -1,5 +1,6 @@
 # @heimdallr-sdk/page-crash
 
+<<<<<<< HEAD
 ## 0.0.24
 
 ### Patch Changes
@@ -7,6 +8,8 @@
 - fix: 修复崩溃检测插件运行时问题
 
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 ## 0.0.23
 
 ### Patch Changes

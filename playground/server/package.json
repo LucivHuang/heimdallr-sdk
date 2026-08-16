@@ -4,8 +4,13 @@
   "private": true,
   "description": "",
   "license": "MIT",
+<<<<<<< HEAD
   "author": "LucivHuang",
   "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/server/README.md",
+=======
+  "author": "LuciferHuang",
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/server/README.md",
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
@@ -41,7 +46,10 @@
     "express-formidable": "^1.2.0",
     "express-ip": "^1.0.4",
     "nanoid": "^3.3.6",
+<<<<<<< HEAD
     "openai": "^6.35.0",
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
     "portfinder": "^1.0.32",
     "prisma": "^4.8.1",
     "source-map": "^0.7.4"

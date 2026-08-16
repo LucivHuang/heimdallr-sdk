@@ -1,5 +1,6 @@
 # @heimdallr-sdk/cli
 
+<<<<<<< HEAD
 A CLI for creating runnable Heimdallr playground projects.
 
 ## Install
@@ -44,3 +45,42 @@ Config flags:
 - `--rabbit-host <host>`
 - `--force` - overwrite existing directory
 
+=======
+A Cli For @heimdallr-sdk/manager,@heimdallr-sdk/server,@heimdallr-sdk/server-consumer,@heimdallr-sdk/server-producer
+
+## Get Started
+
+### Install
+
+```bash
+npm i @heimdallr-sdk/cli
+```
+
+### Run
+
+```bash
+heimdallr-create
+```
+
+## Templates
+
+### client
+
+A manager for @heimdallr-sdk
+
+### server
+
+A server for @heimdallr-sdk
+
+### Server with RabbitMQ
+
+Provide services using rabbitMQ
+
+#### consumer
+
+RabbitMQ consumers
+
+#### producer
+
+RabbitMQ producers
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f

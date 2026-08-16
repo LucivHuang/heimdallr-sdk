@@ -1,9 +1,16 @@
 {
   "name": "@heimdallr-sdk/core",
+<<<<<<< HEAD
   "version": "0.0.30",
   "description": "@heimdallr-sdk/core",
   "license": "MIT",
   "author": "LucivHuang",
+=======
+  "version": "0.0.29",
+  "description": "@heimdallr-sdk/core",
+  "license": "MIT",
+  "author": "LuciferHuang",
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   "main": "dist/core.umd.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -11,6 +18,7 @@
     "dist",
     "esm"
   ],
+<<<<<<< HEAD
   "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/core/README.md",
   "repository": {
     "type": "git",
@@ -18,6 +26,15 @@
   },
   "bugs": {
     "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
+=======
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/core/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   },
   "keywords": [
     "heimdallr",

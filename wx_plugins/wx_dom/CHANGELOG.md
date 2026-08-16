@@ -1,5 +1,6 @@
 # @heimdallr-sdk/wx-dom
 
+<<<<<<< HEAD
 ## 0.0.10
 
 ### Patch Changes
@@ -7,6 +8,8 @@
 - docs: rename author
 
 
+=======
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
 ## 0.0.9
 
 ### Patch Changes

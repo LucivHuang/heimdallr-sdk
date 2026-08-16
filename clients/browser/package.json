@@ -1,9 +1,16 @@
 {
   "name": "@heimdallr-sdk/browser",
+<<<<<<< HEAD
   "version": "0.0.39",
   "description": "A SDK For Monitoring Browser",
   "license": "MIT",
   "author": "LucivHuang",
+=======
+  "version": "0.0.38",
+  "description": "A SDK For Monitoring Browser",
+  "license": "MIT",
+  "author": "LuciferHuang",
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   "main": "dist/browser.umd.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
@@ -11,6 +18,7 @@
     "dist",
     "esm"
   ],
+<<<<<<< HEAD
   "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/browser/README.md",
   "repository": {
     "type": "git",
@@ -18,6 +26,15 @@
   },
   "bugs": {
     "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
+=======
+  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/browser/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
   },
   "keywords": [
     "heimdallr",

@@ -3,8 +3,14 @@
     "jsx": "react-jsx",
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
+<<<<<<< HEAD
     "strictNullChecks": false,
     "rootDir": ".",
+=======
+    "alwaysStrict": false,
+    "strictNullChecks": false,
+    "baseUrl": ".",
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
     "preserveConstEnums": false,
     "isolatedModules": false,
     "experimentalDecorators": true,
@@ -17,6 +23,7 @@
     "removeComments": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
+<<<<<<< HEAD
       "@heimdallr-sdk/page-crash": ["./browser_plugins/page_crash/src"],
       "@heimdallr-sdk/page-crash-worker": ["./browser_plugins/page_crash_worker/src"],
       "@heimdallr-sdk/vite-plugin-sourcemap-upload": ["./tools/vite-plugin-sourcemap-upload/src"],
@@ -28,6 +35,12 @@
     },
     "types": [],
     "target": "ES2015",
+=======
+      "@heimdallr-sdk/*": ["libs/*/src", "clients/*/src"]
+    },
+    "types": [],
+    "target": "ES5",
+>>>>>>> a5faafa41386477bdfbef9f0591c95593afec86f
     "module": "CommonJS",
     "declaration": true,
     "typeRoots": [
