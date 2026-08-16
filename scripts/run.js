@@ -23,14 +23,31 @@ async function run() {
   const dir = getDirByType(package);
 
   if (!dir) {
-    console.warn(`目录不存在(${package})`);
+    console.warn(`目录不存在: ${package}`);
+    return;
+  }
+
+  let execCommand = '';
+  switch (mode) {
+    case 'development':
+      execCommand = 'dev';
+      break;
+    case 'production':
+      execCommand = 'build';
+      break;
+    default:
+      break;
+  }
+
+  if (!execCommand) {
+    console.warn('命令不存在');
     return;
   }
 
   if (dir === 'docs') {
     // 文档项目，直接启动
     try {
-      childProcess.execSync(`concurrently "pnpm --filter ${PACKAGE_PRE}${dir} ${mode}"`, {
+      childProcess.execSync(`concurrently "pnpm --filter ${PACKAGE_PRE}${dir} ${execCommand}"`, {
         stdio: 'inherit'
       });
     } catch (error) {
@@ -43,7 +60,7 @@ async function run() {
   const packageOptions = readdirSync(join(__dirname, '../', dir));
 
   if (!packageOptions.length) {
-    console.warn('选项丢失');
+    console.warn('请选择要运行的项目');
     return;
   }
 
@@ -73,23 +90,6 @@ async function run() {
 
   if (project.includes('wx')) {
     plugins = [...plugins, ...readdirSync(join(__dirname, '../', 'wx_plugins'))];
-  }
-
-  let execCommand = '';
-  switch (mode) {
-    case 'development':
-      execCommand = 'dev';
-      break;
-    case 'production':
-      execCommand = 'build';
-      break;
-    default:
-      break;
-  }
-
-  if (!execCommand) {
-    console.warn('指令丢失');
-    return;
   }
 
   try {

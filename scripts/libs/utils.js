@@ -55,10 +55,59 @@ const isBelongPlayground = (file) => /^playground\//.test(file);
 
 const isBelongDocs = (file) => /^docs\//.test(file);
 
+const SCOPE_ROOTS = ['libs', 'clients', 'browser_plugins', 'wx_plugins', 'tools', 'playground'];
+
+const normalizeFilePath = (file) => file.replace(/\\/g, '/');
+
+const getCommitScope = (file) => {
+  const normalizedFile = normalizeFilePath(file);
+  const parts = normalizedFile.split('/').filter(Boolean);
+
+  if (parts[0] === 'docs') {
+    return 'docs';
+  }
+
+  if (SCOPE_ROOTS.includes(parts[0]) && parts[1]) {
+    return parts[1];
+  }
+
+  return 'sdk';
+};
+
+const getCommitPackageDir = (file) => {
+  const normalizedFile = normalizeFilePath(file);
+  const parts = normalizedFile.split('/').filter(Boolean);
+
+  if (parts[0] === 'docs') {
+    return 'docs';
+  }
+
+  if (SCOPE_ROOTS.includes(parts[0]) && parts[1]) {
+    return `${parts[0]}/${parts[1]}`;
+  }
+
+  return '.';
+};
+
+const groupFilesByCommitScope = (files) =>
+  files.reduce((scopes, file) => {
+    const scope = getCommitScope(file);
+
+    if (!scopes[scope]) {
+      scopes[scope] = [];
+    }
+
+    scopes[scope].push(file);
+    return scopes;
+  }, {});
+
 module.exports = {
   IGNORES,
   getPkgOptsByMode,
   getDirByType,
+  getCommitScope,
+  getCommitPackageDir,
+  groupFilesByCommitScope,
   isBelongLibs,
   isBelongCli,
   isBelongBrowserPlugins,
