@@ -4,19 +4,19 @@
   "private": true,
   "description": "@heimdallr-sdk/manager",
   "license": "MIT",
-  "author": "LuciferHuang",
+  "author": "LucivHuang",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite --open",
     "build:private": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
-  "homepage": "https://github.com/LuciferHuang/heimdallr-sdk/blob/main/packages/manager/README.md",
+  "homepage": "https://github.com/LucivHuang/heimdallr-sdk/blob/main/packages/manager/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferHuang/heimdallr-sdk.git"
+    "url": "git+https://github.com/LucivHuang/heimdallr-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/LuciferHuang/heimdallr-sdk/issues"
+    "url": "https://github.com/LucivHuang/heimdallr-sdk/issues"
   },
   "keywords": [
     "heimdallr",
@@ -27,11 +27,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.0.9",
+    "@element-plus/icons-vue": "^2.3.2",
     "@highlightjs/vue-plugin": "^2.1.0",
     "axios": "^0.21.4",
     "echarts": "^5.2.0",
-    "element-plus": "2.2.36",
+    "element-plus": "^2.13.7",
     "highlight.js": "^11.9.0",
     "js-md5": "^0.7.3",
     "qs": "^6.10.1",

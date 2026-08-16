@@ -36,6 +36,8 @@
         <highlightjs v-if="item.code && item.code.length" autodetect :code="item.code" />
       </el-timeline-item>
     </el-timeline>
+    <!-- AI 分析面板 -->
+    <AIAnalysisPanel v-if="[21, 91].includes(detail.subType) && detail.id" :logId="detail.id" />
   </el-drawer>
 </template>
 <script lang="ts">
@@ -53,6 +55,7 @@ import {
   ElTable,
   ElTableColumn
 } from 'element-plus';
+import AIAnalysisPanel from './components/AIAnalysisPanel.vue';
 // 配置
 import useConfig from './hooks/useListConfig';
 // 表格功能
@@ -71,6 +74,7 @@ export default defineComponent({
     ElButton,
     ElTable,
     ElTableColumn,
+    AIAnalysisPanel,
     filterGroup: defineAsyncComponent(() => import('components/filterGroup/index.vue')),
     tableOprate: defineAsyncComponent(() => import('components/tableOprate/index.vue')),
     pageTable: defineAsyncComponent(() => import('components/pageTable/index.vue')),
