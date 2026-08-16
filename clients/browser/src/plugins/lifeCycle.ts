@@ -55,14 +55,14 @@ function lifeCyclePlugin(options: LifecycleOptions = {}): BasePluginType {
         notify({
           lt: PageLifeType.LOAD,
           href: location.href,
-          ...getIds(userIdentify)
+          ...getIds.call(this, userIdentify)
         });
       });
       window.addEventListener('unload', () => {
         notify({
           lt: PageLifeType.UNLOAD,
           href: location.href,
-          ...getIds(userIdentify)
+          ...getIds.call(this, userIdentify)
         });
       });
     },
