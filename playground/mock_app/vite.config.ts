@@ -2,17 +2,19 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import sourceMapUpload from '@heimdallr-sdk/vite-plugin-sourcemap-upload';
 
+const BASE_URL = 'http://localhost:8001';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8001',
+        target: BASE_URL,
         changeOrigin: true,
         rewrite: (path) => path.replace('/api', '')
       },
       '/crash-worker': {
-        target: 'http://localhost:8001',
+        target: BASE_URL,
         changeOrigin: true
       }
     },
@@ -25,7 +27,7 @@ export default defineConfig({
     react(),
     sourceMapUpload({
       app_name: 'playgroundAPP',
-      url: `http://localhost:8001/sourcemap/upload`
+      url: `${BASE_URL}/sourcemap/upload`
     })
   ]
 });
