@@ -9,6 +9,7 @@
     :disabled="disabled"
     :loading="state.loading"
     :remote-method="remoteMethod()"
+    style="width:192px"
     @focus="remoteMethod($event)"
     @change="changeHandle"
   >

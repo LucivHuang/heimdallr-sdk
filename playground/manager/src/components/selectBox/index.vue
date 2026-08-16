@@ -7,6 +7,7 @@
     clearable
     :filterable="filterable"
     :disabled="readonly"
+    style="width:192px"
     @change="changeHandle"
   >
     <el-checkbox class="select-all-check" v-if="all" v-model="allChecked">

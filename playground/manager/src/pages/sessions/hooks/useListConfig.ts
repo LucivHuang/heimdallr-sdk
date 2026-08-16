@@ -53,7 +53,7 @@ const filterFormItems: FilterItem[] = [
   },
   {
     renderType: 'input',
-    label: '虚拟用户ID',
+    label: '虚拟ID',
     prop: 'user_id'
   },
   {
@@ -109,7 +109,7 @@ const tableConfig: ColumnConfig[] = [
   },
   {
     prop: 'userId',
-    label: '虚拟用户ID'
+    label: '虚拟ID'
   },
   {
     prop: 'ip',

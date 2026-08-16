@@ -15,6 +15,8 @@
         </div>
       </div>
     </panel>
+    <!-- AI 智能洞察 -->
+    <AIInsights class="ai-insights-panel" />
     <panel v-for="proj in projList" :key="proj.id" :title="proj.name" class="view-box">
       <template #header-operate>
         <el-select class="view-option" size="small" v-model="proj.range" @change="onViewChange(proj)">
@@ -30,6 +32,7 @@ import { defineComponent, onMounted } from 'vue';
 import { ElSelect, ElOption } from 'element-plus';
 import { CaretTop, CaretBottom } from '@element-plus/icons-vue';
 import panel from 'components/panel/index.vue';
+import AIInsights from './components/AIInsights.vue';
 import { formateNum } from 'helper/utils';
 import useViewerChart from './hooks/usePerformanceChart';
 import useTotalChart from './hooks/useTotalChart';
@@ -37,6 +40,7 @@ import useTotalChart from './hooks/useTotalChart';
 export default defineComponent({
   components: {
     panel,
+    AIInsights,
     CaretTop,
     CaretBottom,
     ElSelect,
@@ -140,5 +144,9 @@ export default defineComponent({
       }
     }
   }
+}
+.ai-insights-panel {
+  width: calc(100% - 10px);
+  margin-top: 8px;
 }
 </style>
