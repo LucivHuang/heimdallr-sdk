@@ -9,7 +9,7 @@ permissions:
 
 defaults:
   run:
-    working-directory: docs
+    shell: bash
 
 jobs:
   deploy:
@@ -18,13 +18,22 @@ jobs:
     steps:
       # check out the repository
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install pnpm
+        run: corepack enable
 
       - name: Install Dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: npm run build
+        run: pnpm --filter @heimdallr-sdk/docs build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

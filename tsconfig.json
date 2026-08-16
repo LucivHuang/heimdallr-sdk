@@ -3,9 +3,8 @@
     "jsx": "react-jsx",
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "alwaysStrict": false,
     "strictNullChecks": false,
-    "baseUrl": ".",
+    "rootDir": ".",
     "preserveConstEnums": false,
     "isolatedModules": false,
     "experimentalDecorators": true,
@@ -18,10 +17,17 @@
     "removeComments": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@heimdallr-sdk/*": ["libs/*/src", "clients/*/src"]
+      "@heimdallr-sdk/page-crash": ["./browser_plugins/page_crash/src"],
+      "@heimdallr-sdk/page-crash-worker": ["./browser_plugins/page_crash_worker/src"],
+      "@heimdallr-sdk/vite-plugin-sourcemap-upload": ["./tools/vite-plugin-sourcemap-upload/src"],
+      "@heimdallr-sdk/webpack-plugin-sourcemap-upload": ["./tools/webpack-plugin-sourcemap-upload/src"],
+      "@heimdallr-sdk/wx-dom": ["./wx_plugins/wx_dom/src"],
+      "@heimdallr-sdk/wx-request": ["./wx_plugins/wx_request/src"],
+      "@heimdallr-sdk/wx-route": ["./wx_plugins/wx_route/src"],
+      "@heimdallr-sdk/*": ["./libs/*/src", "./clients/*/src", "./browser_plugins/*/src", "./wx_plugins/*/src", "./tools/*/src"]
     },
     "types": [],
-    "target": "ES5",
+    "target": "ES2015",
     "module": "CommonJS",
     "declaration": true,
     "typeRoots": [

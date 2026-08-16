@@ -1,13 +1,13 @@
 
 <h2 style="color:#10b981">HEIMDALLR-SDK</h2>
 
-一款简单易用、轻量化、插件化的前端监控sdk
+首创插件化、可插拔的前端埋点 SDK · 简单易用、轻量化、插件化的前端监控利器
 
-An easy-to-use, lightweight, plug-in front-end monitoring SDK
+The first plug-in, pluggable front-end tracking SDK — easy-to-use, lightweight, and extensible
 
 ## Documentation
 
-To check out docs, visit [heimdallr-sdk](https://luciferhuang.github.io/heimdallr-sdk/).
+To check out docs, visit [heimdallr-sdk](https://LucivHuang.github.io/heimdallr-sdk/).
 
 ## Env
 
@@ -68,6 +68,65 @@ Build all packages
 ```bash
 pnpm run build
 ```
+
+## Testing
+
+### E2E Tests
+
+Comprehensive end-to-end testing suite with Playwright covering SDK core functionality, all plugins, and manager integration.
+
+**Prerequisites**
+- MySQL running at localhost:3306 with database `test_base`
+- Node.js >= 16, pnpm >= 9.7.1
+
+**First Time Setup**
+
+```bash
+# Install dependencies
+pnpm install
+
+# Setup test environment (Prisma client + Playwright browsers)
+pnpm test:setup
+
+# Create test database if not exists
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS test_base;"
+```
+
+**Run Tests**
+
+```bash
+# Run all E2E tests
+pnpm test
+
+# Run with Playwright UI (interactive mode)
+pnpm test:e2e:ui
+
+# Run in debug mode
+pnpm test:e2e:debug
+
+# Run in headed mode (see browser)
+pnpm test:e2e:headed
+
+# View test report
+pnpm test:e2e:report
+```
+
+**Test Coverage**
+- ✅ SDK Core & Manager Integration (9 tests)
+- ✅ Error Capture (5 tests)
+- ✅ Mock App Integration (7 tests)
+- ✅ Console Plugin (4 tests)
+- ✅ Customer Events (6 tests)
+- ✅ DOM Plugin (5 tests)
+- ✅ Fetch Plugin (4 tests)
+- ✅ Page Crash Detection (2 tests)
+- ✅ Performance Metrics (5 tests)
+- ✅ Recording Plugin (3 tests)
+- ✅ Routing Plugin (5 tests)
+- ✅ Vue Plugin (3 tests)
+- ✅ XHR Plugin (3 tests)
+
+For detailed testing documentation, see [e2e/README.md](./e2e/README.md)
 
 ## Sponsor
 

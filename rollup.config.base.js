@@ -17,7 +17,7 @@ export const common = {
   input: `${packageDir}/src/index.ts`,
   output: {
     name: `HEIMDALLR_${name.toLocaleUpperCase()}`,
-    footer: '/* follow me on Github! @LuciferHuang */',
+    footer: '/* follow me on Github! @LucivHuang */',
     sourcemap: process.env.NODE_ENV !== 'production'
   },
   plugins: [
