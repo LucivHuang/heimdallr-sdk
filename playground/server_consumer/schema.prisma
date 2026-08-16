@@ -58,3 +58,29 @@ model BreadCrumb {
     level    Int
     time     DateTime
 }
+
+model AIAnalysis {
+    id          String   @unique
+    type        String
+    target_id   String
+    provider    String
+    model       String
+    prompt      String   @db.LongText
+    result      String   @db.LongText
+    confidence  Float?
+    tokens_used Int?
+    cost        Float?
+    ctime       DateTime @default(now())
+}
+
+model AIInsight {
+    id          String   @unique
+    type        String
+    severity    String
+    title       String
+    description String   @db.LongText
+    data        String   @db.LongText
+    project_id  String?
+    is_read     Boolean  @default(false)
+    ctime       DateTime @default(now())
+}
