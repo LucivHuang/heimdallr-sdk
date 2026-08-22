@@ -17,10 +17,16 @@ app.use(router);
 
 const bs = create();
 
-Promise.all([getUseablePort(), getUseablePort()]).then(([port, proxyPort]) => {
+const DEFAULT_PORT = 8001;
+
+async function start() {
+  const port = Number(process.env.PORT) || (await getUseablePort({ port: DEFAULT_PORT }));
+  const proxyPort = await getUseablePort({ port: port + 1 });
+
   if (!port || !proxyPort) {
     return;
   }
+
   app.listen(port, () => {
     bs.init({
       open: false,
@@ -31,4 +37,6 @@ Promise.all([getUseablePort(), getUseablePort()]).then(([port, proxyPort]) => {
       port: proxyPort
     });
   });
-});
+}
+
+void start();
