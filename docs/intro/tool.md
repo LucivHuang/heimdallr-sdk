@@ -171,7 +171,7 @@ e2e/
   run: pnpm test
 ```
 
-详细的故障排查指南，请参考 [e2e/README.md](../../e2e/README.md)
+详细的故障排查指南，请参考 [e2e/README.md](https://github.com/LucivHuang/heimdallr-sdk/blob/main/e2e/README.md)
 
 ## @heimdallr-sdk/webpack-plugin-sourcemap-upload
 
