@@ -98,6 +98,9 @@ mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS test_base;"
 # Run all E2E tests
 pnpm test
 
+# Run tests only (skip setup — used by CI)
+pnpm test:e2e
+
 # Run with Playwright UI (interactive mode)
 pnpm test:e2e:ui
 
