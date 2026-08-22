@@ -1,10 +1,6 @@
 name: E2E Tests
 
-on:
-  pull_request:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 permissions:
   contents: read
